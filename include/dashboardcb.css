@@ -116,3 +116,15 @@ html {
 .expand_gridoptions {
 	display: none;
 }
+
+
+/* New header */
+div#addWidgetDropDown {
+	top: 9.5rem !important;
+	left: 85% !important;
+	width: 150px;
+}
+
+#addWidgetDropDown_ {
+	display: none;
+}

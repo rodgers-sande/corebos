@@ -51,8 +51,7 @@
 							</span>
 						</li>
 						<li>
-							<a	onClick='fnAddWindow(this,"addWidgetDropDown");'
-								onMouseOut='fnRemoveWindow();'>
+							<a id="addWidgetDropDown_btn">
 								<span class="slds-icon_container slds-icon_container_circle slds-icon-action-description" title="{$MOD.LBL_HOME_ADDWINDOW}">
 									<svg class="slds-icon slds-icon_x-small" aria-hidden="true">
 										<use xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -150,7 +149,7 @@
 <form name="Homestuff" id="formStuff" style="display: inline;" method="post">
 	<input type="hidden" name="action" value="homestuff">
 	<input type="hidden" name="module" value="Home">
-	<div id='addWidgetDropDown' class="slds-dropdown slds-dropdown_right slds-m-right_small slds-dropdown_actions" onmouseover='fnShowWindow()' onmouseout='fnRemoveWindow()'>
+	<div id='addWidgetDropDown_' class="slds-dropdown slds-dropdown_right slds-m-right_small slds-dropdown_actions">
 	<ul class="slds-dropdown__list" role="menu">
 		<li class="slds-dropdown__item" role="presentation">
 			<a href='javascript:;' role="menuitem" id="addmodule">

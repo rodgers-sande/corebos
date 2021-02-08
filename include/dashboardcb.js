@@ -60,7 +60,7 @@ function addEvents(grid, id) {
 	});
   }
 
-// Menu Hover
+// Menu (secondary options vertical) Hover
 $('.homeactions').mouseenter(function() {
 	$('.homeactions_items').show();
 })
@@ -68,6 +68,17 @@ $('.homeactions_items').mouseleave(function() {
 	$('.homeactions_items').hide();
 })
 
+// Menu (add items button) 
+$('#addWidgetDropDown_btn').on('click',function(){
+	$('#addWidgetDropDown_').toggle();
+}); 
+
+$('#addWidgetDropDown_').mouseenter(function() {
+	$('#addWidgetDropDown_').show();
+})
+$('#addWidgetDropDown_').mouseleave(function() {
+	$('#addWidgetDropDown_').hide();
+})
 
 //Expand widget options
 function expandoptions() {

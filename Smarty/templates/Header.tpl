@@ -23,15 +23,7 @@
 	<link rel="stylesheet" href="include/LD/assets/styles/mainmenu.css" type="text/css" />
 	<link rel="stylesheet" href="include/LD/assets/styles/override_lds.css" type="text/css" />
 	<link rel="stylesheet" href="include/style.css" type="text/css" />
-	<style type="text/css">
-		html {
-			background: url({$coreBOS_app_coverimage}) no-repeat center center fixed;
-			-webkit-background-size: cover;
-			-moz-background-size: cover;
-			-o-background-size: cover;
-			background-size: cover;
-		}
-	</style>
+	<link rel="stylesheet" href="include/dashboardcb.css" type="text/css" />
 {* vtlib customization: Inclusion of custom javascript and css as registered *}
 {if $HEADERCSS}
 	<!-- Custom Header CSS -->

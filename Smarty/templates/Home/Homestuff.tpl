@@ -19,35 +19,24 @@
 <input id="homeLayout" type="hidden" value="{$LAYOUT}">
 {*<!--Home Page Entries  -->*}
 
-{include file="Home/HomeButtons.tpl"}
-<div id="vtbusy_homeinfo" style="display:none;">
-	<img src="{'vtbusy.gif'|@vtiger_imageurl:$THEME}" border="0">
+{*<!-- Dashboard -->*}
+<div class="container-fluid slds-p-around_small">
+	<div class="slds-grid slds-grid_vertical slds-p-around_x-small slds-p-bottom_x-small dash-bg-white">
+		<div class="slds-col slds-border_bottom">
+			{include file="Home/HomeDashboardHeader.tpl"}
+			<div id="vtbusy_homeinfo" style="display:none;">
+				<img src="{'vtbusy.gif'|@vtiger_imageurl:$THEME}" border="0">
+			</div>
+		</div>
+		<div class="slds-col">
+			{include file="Home/HomeDashboardGrids.tpl"}
+		</div>
+	</div>
 </div>
+{*<!--Home Page Entries  -->*}
+
 
 {*<!-- Main Contents Start Here -->*}
-<table width="97%" class="small showPanelBg" cellpadding="0" cellspacing="0" border="0" align="center" valign="top">
-<tr>
-	<td width="100%" align="center" valign="top" height="350">
-		<div id="MainMatrix" class="show_tab topMarginHomepage" style="padding:0px;width:100%">
-			<script type="text/javascript" src="include/jquery/jquery-ui.js"></script>
-			{foreach item=tablestuff from=$HOMEFRAME name="homeframe"}
-				{*<!-- create divs for each widget - the contents will be loaded dynamically from javascript -->*}
-				{include file="Home/MainHomeBlock.tpl"}
-				<script>
-					{*<!-- load contents for the widget-->*}
-					{if $tablestuff.Stufftype eq 'Default' && $tablestuff.Stufftitle eq 'Home Page Dashboard'|@getTranslatedString:'Home'}
-						fetch_homeDB({$tablestuff.Stuffid});
-					{elseif $tablestuff.Stufftype eq 'DashBoard'}
-						loadStuff({$tablestuff.Stuffid},'{$tablestuff.Stufftype}');
-					{elseif $tablestuff.Stufftype eq 'ReportCharts'}
-						loadStuff({$tablestuff.Stuffid},'{$tablestuff.Stufftype}');
-					{/if}
-				</script>
-			{/foreach}
-		</div>
-	</td>
-</tr>
-</table>
 
 {*<!-- Main Contents Ends Here -->*}
 <script>

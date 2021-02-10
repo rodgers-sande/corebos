@@ -103,6 +103,7 @@ html {
 .homeactions_items {
 	display: none;
 	z-index: 9999;
+	top: 9.5rem;
 }
 
 .homeactions:hover .homeactions_items {
@@ -127,4 +128,42 @@ div#addWidgetDropDown {
 
 #addWidgetDropDown_ {
 	display: none;
+}
+
+.layout-icons-group {
+	width: 100%;
+}
+
+.layout-icons-group .slds-radio_button {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.layout-icons-group svg {
+	width: 30px;
+	height: 30px;
+}
+
+.layout-icons-group input[type=radio] {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.layout-icons-group label {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column;
+}
+
+.layout-icons-group input[type=radio]:active ~ label, .layout-icons-group input[type=radio]:checked ~ label {
+	opacity: 1;
+}
+
+.layout-icons-group .slds-radio_button:hover, .layout-icons-group .slds-radio_button:focus, .layout-icons-group input[type=radio]:checked ~ label {
+	background: rgba(0,0,0,.1);
 }

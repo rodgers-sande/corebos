@@ -64,6 +64,15 @@ function addEvents(grid, id) {
 $('.homeactions').mouseenter(function() {
 	$('.homeactions_items').show();
 })
+
+$('.homeactions').mouseleave(function() {
+	$('.homeactions_items').hide();
+})
+
+$('.homeactions_items').mouseenter(function() {
+	$('.homeactions_items').show();
+})
+
 $('.homeactions_items').mouseleave(function() {
 	$('.homeactions_items').hide();
 })
@@ -88,3 +97,64 @@ function expandoptions() {
 function expandoptionshide() {
 	$('.expand_gridoptions').hide();
 }
+
+// Change Layout - Open modal 
+$('#changeLayoutDivBtn').on('click',function(){
+	$('#changeLayoutDivHome').addClass('slds-fade-in-open');
+	if ($('#changeLayoutDivHome').hasClass('slds-fade-in-open')){
+		$('.slds-backdrop_open.overlay').show();
+	} else {
+		$('.slds-backdrop_open.overlay').hide();
+	}
+});
+
+// Change Layout - Close modal 
+var modal = document.getElementById("changeLayoutDivHome");
+
+window.onclick = function(event) {
+	if (event.target == modal) {
+		modal.classList.remove('slds-fade-in-open');
+		$('.slds-backdrop_open.overlay').hide();
+	}
+}
+
+function closeLayoutModal() {
+	$('.slds-backdrop_open.overlay').hide();
+	$('#changeLayoutDivHome').removeClass('slds-fade-in-open');
+}
+
+$('.layoutModalCancel').on('click',function(){
+	closeLayoutModal();
+});
+
+document.addEventListener('keydown', function(event){
+	if(event.key === "Escape"){
+		closeLayoutModal();
+	}
+});
+
+// Resizing widgets
+
+$('.layoutModalCancel').on('click',function(){
+	closeLayoutModal();
+});
+
+$('.grid-stack-item').each(function(index, value) {
+	console.log(`div${index}: ${this.id}`);
+});
+
+$('#1-column-layout').click( function() {
+	$('.grid-stack-item').attr("data-gs-width", "12");
+});
+
+$('#2-column-layout').click( function() {
+	$('.grid-stack-item').attr("data-gs-width", "6");
+});
+
+$('#3-column-layout').click( function() {
+	$('.grid-stack-item').attr("data-gs-width", "4");
+});
+
+$('#4-column-layout').click( function() {
+	$('.grid-stack-item').attr("data-gs-width", "3");
+});

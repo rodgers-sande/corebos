@@ -119,7 +119,7 @@
 										</a>
 									</li>
 									<li class="slds-dropdown__item" role="presentation">
-										<a onclick='showOptions("changeLayoutDiv");' role="menuitem" tabindex="-1">
+										<a id='changeLayoutDivBtn' role="menuitem" tabindex="-1">
 										{* Change layout button *}
 											<button
 												class="slds-button slds-button_icon"
@@ -340,7 +340,7 @@
 </div>
 
 
-<div id="changeLayoutDiv" class="layerPopup" style="z-index:2000; display:none;">
+{*<div id="changeLayoutDiv" class="layerPopup" style="z-index:2000; display:none;">
 	<table>
 	<tr class="layerHeadingULine">
 		<td class="big">
@@ -378,4 +378,59 @@
 	</tr>
 
 	</table>
-</div>
+</div>*}
+
+<section id="changeLayoutDivHome" role="dialog" tabindex="-1" aria-modal="true" aria-describedby="changeLayoutDivContent" class="slds-modal slds-modal_small">
+	<div class="slds-modal__container">
+		<header class="slds-modal__header slds-modal__header_empty">
+			<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+			<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+				<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+			</svg>
+			<span class="slds-assistive-text">Close</span>
+			</button>
+		</header>
+		<div class="slds-modal__content slds-p-around_medium" id="changeLayoutDivContent">
+			<fieldset class="slds-form-element">
+				<div class="slds-form-element__control">
+					<div class="slds-radio_button-group layout-icons-group">
+						<span class="slds-button slds-radio_button">
+							<input type="radio" name="layout-colum-selection" id="1-column-layout" value="1" />
+							<label for="1-column-layout">
+								<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><title>1 column</title><path d="M71.94,23A5.07,5.07,0,0,1,77,28.06V71.94A5.07,5.07,0,0,1,71.94,77H28.06A5.07,5.07,0,0,1,23,71.94V28.06A5.07,5.07,0,0,1,28.06,23H71.94m0-1H28.06A6.06,6.06,0,0,0,22,28.06V71.94A6.06,6.06,0,0,0,28.06,78H71.94A6.06,6.06,0,0,0,78,71.94V28.06A6.06,6.06,0,0,0,71.94,22Z" transform="translate(-22 -22)" style="fill:#706e6b"/><rect x="5.5" y="5.5" width="45" height="45" rx="3.03" style="fill:#706e6b"/></svg>
+								1 Column
+							</label> 
+						</span>
+						<span class="slds-button slds-radio_button">
+							<input type="radio" name="layout-colum-selection" id="2-column-layout" value="2" />
+							<label for="2-column-layout">
+								<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><title>{$MOD.LBL_TWO_COLUMN}</title><path d="M49.94,1A5.08,5.08,0,0,1,55,6.06V49.94A5.08,5.08,0,0,1,49.94,55H6.06A5.08,5.08,0,0,1,1,49.94V6.06A5.08,5.08,0,0,1,6.06,1H49.94m0-1H6.06A6.06,6.06,0,0,0,0,6.06V49.94A6.06,6.06,0,0,0,6.06,56H49.94A6.06,6.06,0,0,0,56,49.94V6.06A6.06,6.06,0,0,0,49.94,0Z" style="fill:#706e6b"/><path d="M32.77,5.5H47a2.85,2.85,0,0,1,2.62,3V47.47a2.85,2.85,0,0,1-2.62,3H32.77a2.85,2.85,0,0,1-2.62-3V8.53A2.85,2.85,0,0,1,32.77,5.5Z" style="fill:#706e6b"/><path d="M9,5.5H23.23a2.85,2.85,0,0,1,2.62,3V47.47a2.85,2.85,0,0,1-2.62,3H9a2.85,2.85,0,0,1-2.62-3V8.53A2.85,2.85,0,0,1,9,5.5Z" style="fill:#706e6b"/></svg>
+								{$MOD.LBL_TWO_COLUMN}
+							</label> 
+						</span>
+						<span class="slds-button slds-radio_button">
+							<input type="radio" name="layout-colum-selection" id="3-column-layout" value="3" />
+							<label for="3-column-layout">
+							<svg id="Layer_3" data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><title>{$MOD.LBL_THREE_COLUMN}</title><path d="M49.94,1A5.08,5.08,0,0,1,55,6.06V49.94A5.08,5.08,0,0,1,49.94,55H6.06A5.08,5.08,0,0,1,1,49.94V6.06A5.08,5.08,0,0,1,6.06,1H49.94m0-1H6.06A6.06,6.06,0,0,0,0,6.06V49.94A6.06,6.06,0,0,0,6.06,56H49.94A6.06,6.06,0,0,0,56,49.94V6.06A6.06,6.06,0,0,0,49.94,0Z" style="fill:#706e6b"/><path d="M39.15,5.5h8.76a2.16,2.16,0,0,1,1.94,2.32V48.18a2.16,2.16,0,0,1-1.94,2.32H39.15a2.16,2.16,0,0,1-1.94-2.32V7.82A2.16,2.16,0,0,1,39.15,5.5Z" style="fill:#706e6b"/><path d="M23.62,5.5h8.76a2.16,2.16,0,0,1,1.94,2.32V48.18a2.16,2.16,0,0,1-1.94,2.32H23.62a2.16,2.16,0,0,1-1.94-2.32V7.82A2.16,2.16,0,0,1,23.62,5.5Z" style="fill:#706e6b"/><path d="M8.09,5.5h8.76a2.16,2.16,0,0,1,1.94,2.32V48.18a2.16,2.16,0,0,1-1.94,2.32H8.09a2.16,2.16,0,0,1-1.94-2.32V7.82A2.16,2.16,0,0,1,8.09,5.5Z" style="fill:#706e6b"/></svg>
+								{$MOD.LBL_THREE_COLUMN}
+							</label> 
+						</span>
+						<span class="slds-button slds-radio_button">
+							<input type="radio" name="layout-colum-selection" id="4-column-layout" value="4" />
+							<label for="4-column-layout">
+							<svg id="Layer_4" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><title>{$MOD.LBL_FOUR_COLUMN}</title><path d="M43.41,5.79h6.18c.62,0,1.13.72,1.13,1.59V49.2c0,.88-.51,1.59-1.13,1.59H43.41c-.62,0-1.13-.71-1.13-1.59V7.38C42.28,6.51,42.79,5.79,43.41,5.79Z" style="fill:#706e6b"/><path d="M31.09,5.79h6.18c.62,0,1.13.72,1.13,1.59V49.2c0,.88-.51,1.59-1.13,1.59H31.09c-.63,0-1.13-.71-1.13-1.59V7.38C30,6.51,30.46,5.79,31.09,5.79Z" style="fill:#706e6b"/><path d="M18.76,5.79h6.18c.63,0,1.13.72,1.13,1.59V49.2c0,.88-.5,1.59-1.13,1.59H18.76c-.62,0-1.13-.71-1.13-1.59V7.38C17.63,6.51,18.14,5.79,18.76,5.79Z" style="fill:#706e6b"/><path d="M6.41,5.79h6.18c.62,0,1.13.72,1.13,1.59V49.2c0,.88-.51,1.59-1.13,1.59H6.41c-.62,0-1.13-.71-1.13-1.59V7.38C5.28,6.51,5.79,5.79,6.41,5.79Z" style="fill:#706e6b"/><path d="M49.94,1A5.08,5.08,0,0,1,55,6.06V49.94A5.08,5.08,0,0,1,49.94,55H6.06A5.08,5.08,0,0,1,1,49.94V6.06A5.08,5.08,0,0,1,6.06,1H49.94m0-1H6.06A6.06,6.06,0,0,0,0,6.06V49.94A6.06,6.06,0,0,0,6.06,56H49.94A6.06,6.06,0,0,0,56,49.94V6.06A6.06,6.06,0,0,0,49.94,0Z" style="fill:#706e6b"/></svg>
+								{$MOD.LBL_FOUR_COLUMN}
+							</label> 
+						</span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<footer class="slds-modal__footer">
+			<button class="slds-button slds-button_neutral layoutModalCancel">Cancel</button>
+			<button class="slds-button slds-button_brand" id='layoutModalSave' onclick="saveLayout();">Save</button>
+		</footer>
+	</div>
+</section>
+<div class="slds-backdrop slds-backdrop_open overlay" style="display: none"></div>
+

@@ -63,31 +63,32 @@ function addEvents(grid, id) {
 // Menu (secondary options vertical) Hover
 $('.homeactions').mouseenter(function() {
 	$('.homeactions_items').show();
-})
+});
 
 $('.homeactions').mouseleave(function() {
 	$('.homeactions_items').hide();
-})
+});
 
 $('.homeactions_items').mouseenter(function() {
 	$('.homeactions_items').show();
-})
+});
 
 $('.homeactions_items').mouseleave(function() {
 	$('.homeactions_items').hide();
-})
+});
+
 
 // Menu (add items button) 
-$('#addWidgetDropDown_btn').on('click',function(){
+$('#addWidgetDropDown_btn').click( function() {
 	$('#addWidgetDropDown_').toggle();
 }); 
 
 $('#addWidgetDropDown_').mouseenter(function() {
 	$('#addWidgetDropDown_').show();
-})
+});
 $('#addWidgetDropDown_').mouseleave(function() {
 	$('#addWidgetDropDown_').hide();
-})
+});
 
 //Expand widget options
 function expandoptions() {
@@ -102,6 +103,16 @@ function expandoptionshide() {
 $('#changeLayoutDivBtn').on('click',function(){
 	$('#changeLayoutDivHome').addClass('slds-fade-in-open');
 	if ($('#changeLayoutDivHome').hasClass('slds-fade-in-open')){
+		$('.slds-backdrop_open.overlay').show();
+	} else {
+		$('.slds-backdrop_open.overlay').hide();
+	}
+});
+
+// Add widgets modal - Open modal 
+$('#addWidgetsDiv_').on('click',function(){
+	$('#addWidgetsDiv_').addClass('slds-fade-in-open');
+	if ($('#addWidgetsDiv_').hasClass('slds-fade-in-open')){
 		$('.slds-backdrop_open.overlay').show();
 	} else {
 		$('.slds-backdrop_open.overlay').hide();
@@ -158,3 +169,5 @@ $('#3-column-layout').click( function() {
 $('#4-column-layout').click( function() {
 	$('.grid-stack-item').attr("data-gs-width", "3");
 });
+
+//ADD WIDGETS WINDOW 

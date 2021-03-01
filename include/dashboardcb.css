@@ -100,10 +100,14 @@ html {
 	}
 }
 
+.homeactions_items li a {
+	justify-content: start;
+}
+
 .homeactions_items {
 	display: none;
 	z-index: 9999;
-	top: 9.5rem;
+	/*top: 9.5rem;*/
 }
 
 .homeactions:hover .homeactions_items {
@@ -166,4 +170,9 @@ div#addWidgetDropDown {
 
 .layout-icons-group .slds-radio_button:hover, .layout-icons-group .slds-radio_button:focus, .layout-icons-group input[type=radio]:checked ~ label {
 	background: rgba(0,0,0,.1);
+}
+
+/*SLDS Footer */
+.slds-modal__footer {
+	width: 100% !important;
 }

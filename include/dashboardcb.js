@@ -28,9 +28,6 @@ $('#addWidgetDropDown_').mouseleave(function() {
 	$('#addWidgetDropDown_').hide();
 });
 
-//Expand widget options
-
-
 // Change Layout - Open modal 
 $('#changeLayoutDivBtn').on('click',function(){
 	$('#changeLayoutDivHome').addClass('slds-fade-in-open');

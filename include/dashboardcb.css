@@ -107,7 +107,7 @@ html {
 .homeactions_items {
 	display: none;
 	z-index: 9999;
-	/*top: 9.5rem;*/
+	top: 8rem;
 }
 
 .homeactions:hover .homeactions_items {
@@ -122,12 +122,14 @@ html {
 	display: none;
 }
 
+.gridoptions_icon:hover .expand_gridoptions {
+	display: block;
+}
 
 /* New header */
 div#addWidgetDropDown {
-	top: 9.5rem !important;
-	left: 85% !important;
-	width: 150px;
+	top: 8rem !important;
+	left: 90% !important;
 }
 
 #addWidgetDropDown_ {

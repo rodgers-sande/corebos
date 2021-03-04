@@ -306,7 +306,7 @@
 <form name="Homestuff" id="formStuff" style="display: inline;" method="post">
 	<input type="hidden" name="action" value="homestuff">
 	<input type="hidden" name="module" value="Home">
-	<div id='addWidgetDropDown' class="slds-dropdown slds-dropdown_right slds-m-right_small slds-dropdown_actions" onmouseover='fnShowWindow()' onmouseout='fnRemoveWindow()'>
+	<div id='addWidgetDropDown' class="slds-dropdown slds-dropdown_right slds-m-right_small slds-dropdown_actions addWidgetsMain" onmouseover='fnShowWindow()' onmouseout='fnRemoveWindow()'>
 	<ul class="slds-dropdown__list" role="menu">
 		<li class="slds-dropdown__item" role="presentation">
 			<a href='javascript:;' role="menuitem" id="addmodule">

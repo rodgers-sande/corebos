@@ -1,0 +1,198 @@
+/* Colors */
+:root {
+	--x-main-bg: #f3f2f2;
+	--x-main-bg-dark: #222C3C;
+	--x-main-txt: #080707;
+	--x-main-txt-dark: #F8F8FB;
+	--bg-white: #ffffff;
+	--light-grey: #dddddd;
+}
+/*
+	Removing image background
+	Using a background color instead
+*/
+html {
+	background: var(--x-main-bg);
+}
+
+/*	
+	Container class
+	Borrowed from Bootstrap 4 
+*/
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+	width: 100%;
+	padding-right: var(--bs-gutter-x, 0.75rem);
+	padding-left: var(--bs-gutter-x, 0.75rem);
+	margin-right: auto;
+	margin-left: auto;
+}
+
+@media (min-width: 576px) {
+.container-sm, .container {
+	max-width: 540px;
+}
+}
+@media (min-width: 768px) {
+.container-md, .container-sm, .container {
+	max-width: 720px;
+}
+}
+@media (min-width: 992px) {
+.container-lg, .container-md, .container-sm, .container {
+	max-width: 960px;
+}
+}
+@media (min-width: 1200px) {
+.container-xl, .container-lg, .container-md, .container-sm, .container {
+	max-width: 1140px;
+}
+}
+@media (min-width: 1400px) {
+.container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+	max-width: 1320px;
+}
+}
+
+/* Dashboard container*/
+.dash-bg-white {
+	background: var(--bg-white);
+}
+
+/* Shadow */
+.dash-decor-1 {
+	box-shadow: 0 0px 21.4px -15px rgba(0, 0, 0, 0.06), 0 0px 40px -15px rgba(0, 0, 0, 0.12);
+	border: 1px solid var(--light-grey);
+	border-radius: .5rem;
+}
+
+/* Grid Widget*/
+.gridclose_icon, .gridmainfooter {
+	display: none;
+}
+
+.gridoptions_icon, .gridclose_icon, .expand_gridoptions {
+	transition: all 0.2s ease-in-out;
+	animation-name: closepop;
+	animation-duration: 0.3s;
+	animation-timing-function: easeout;
+}
+
+[id^=stuff_]:hover .gridclose_icon, [id^=stuff_]:hover .gridmainfooter {
+	display: block;
+}
+
+@keyframes closepop {
+	0% {
+		transform: scale(0.2);
+	}
+	75% {
+		transform: scale(1.2);
+		animation-timing-function: easeout;
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.homeactions_items li a {
+	justify-content: start;
+}
+
+.homeactions_items {
+	display: none;
+	z-index: 9999;
+	/*top: 9.5rem;*/
+}
+
+.homeactions:hover .homeactions_items {
+	display: block;
+}
+
+.homeactions_items:hover {
+	display: block;
+}
+
+.expand_gridoptions {
+	display: none;
+}
+
+
+/* New header */
+div#addWidgetDropDown {
+	top: 9.5rem !important;
+	left: 85% !important;
+	width: 150px;
+}
+
+#addWidgetDropDown_ {
+	display: none;
+}
+
+.layout-icons-group {
+	width: 100%;
+}
+
+.layout-icons-group .slds-radio_button {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.layout-icons-group svg {
+	width: 30px;
+	height: 30px;
+}
+
+.layout-icons-group input[type=radio] {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.layout-icons-group label {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column;
+}
+
+.layout-icons-group input[type=radio]:active ~ label, .layout-icons-group input[type=radio]:checked ~ label {
+	opacity: 1;
+}
+
+.layout-icons-group .slds-radio_button:hover, .layout-icons-group .slds-radio_button:focus, .layout-icons-group input[type=radio]:checked ~ label {
+	background: rgba(0,0,0,.1);
+}
+
+/*SLDS Footer */
+.slds-modal__footer {
+	width: 100% !important;
+}
+
+/* Custom widgets */
+.maingridrow {
+	display: flex;
+	flex-flow: wrap;
+	width: 100%;
+	justify-content: space-around;
+}
+
+.dash-item-bg-light {
+	background: var(--bg-white);
+}
+
+.dash-item-bg-grey {
+	background: var(--x-main-bg);
+}
+
+.widget_grid {
+	margin-bottom: 1rem;
+}

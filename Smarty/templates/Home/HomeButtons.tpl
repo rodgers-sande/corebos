@@ -9,10 +9,10 @@
 ********************************************************************************/
 -->*}
 <div id="page-header-placeholder"></div>
-<div id="page-header" class="slds-page-header slds-m-vertical_medium">
+{*<div id="page-header" class="slds-page-header slds-m-vertical_medium">
 	<div class="slds-page-header__row">
 		<div class="slds-page-header__col-title">
-			<div class="slds-media">
+			<div class="slds-media"> 
 				<div class="slds-media__figure">
 					<a class="hdrLink" href="index.php?action=index&module={$MODULE}">
 						<span class="slds-icon_container slds-icon-standard-home" title="{$MODULE|@getTranslatedString:$MODULE}">
@@ -110,7 +110,7 @@
 						</button>
 						{/if}
 						<div class="slds-button-group" role="group">
-							{* Calendar button *}
+							
 							{if $CALENDAR_DISPLAY eq 'true'}
 								{$canusecalendar = true}
 								{if $CHECK.Calendar != 'yes'}
@@ -130,7 +130,7 @@
 									</span>
 							</button>
 							{/if}
-							{* World clock button *}
+							
 							{if $WORLD_CLOCK_DISPLAY eq 'true'}
 							<button
 								class="slds-button slds-button_icon slds-button_icon-border-filled"
@@ -145,7 +145,7 @@
 									</span>
 							</button>
 							{/if}
-							{* Change layout button *}
+							
 							<button
 								class="slds-button slds-button_icon slds-button_icon-border-filled"
 								aria-haspopup="true"
@@ -160,6 +160,143 @@
 							</button>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>*}
+<div id="page-header" class="slds-m-vertical_medium slds-border_bottom slds-p-bottom_x-small dash-item-bg-grey">
+	<div class="slds-page-header__row slds-grid_vertical-align-center">
+		<div class="slds-page-header__col-title">
+			<div class="slds-media">
+				<div class="slds-media__figure">
+					<a class="hdrLink" href="index.php?action=index&module={$MODULE}">
+						<span class="slds-icon_container slds-icon-standard-home" title="{$MODULE|@getTranslatedString:$MODULE}">
+							<svg class="slds-icon slds-page-header__icon" id="page-header-icon" aria-hidden="true">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="include/LD/assets/icons/standard-sprite/svg/symbols.svg#home" />
+							</svg>
+							<span class="slds-assistive-text">{$MODULE|@getTranslatedString:$MODULE}</span>
+						</span>
+					</a>
+				</div>
+				<div class="slds-media__body">
+					<div class="slds-page-header__name">
+						<div class="slds-page-header__name-title">
+							<h1>
+								<span>{$MODULE|@getTranslatedString:$MODULE}</span>
+								<span class="slds-page-header__title slds-truncate" title="{$MODULE|@getTranslatedString:$MODULE|@addslashes}">
+									<a class="hdrLink" href="index.php?action=index&module={$MODULE}">{'My Home Page'|@getTranslatedString:$MODULE}</a>
+								</span>
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="slds-page-header__col-actions">
+			<div class="slds-page-header__controls">
+				<div class="slds-page-header__control">
+					<ul class="slds-button-group-list">
+						<li class="slds-m-right_small slds-m-top_x-small">
+							<span id="vtbusy_info" style="display:none;">
+								<div role="status" class="slds-spinner slds-spinner_brand slds-spinner_x-small" style="position:relative; top:6px;">
+									<div class="slds-spinner__dot-a"></div>
+									<div class="slds-spinner__dot-b"></div>
+								</div>
+							</span>
+						</li>
+						<li>
+							<a class="slds-button"
+								onClick='fnAddWindow(this,"addWidgetDropDown");'
+								onMouseOut='fnRemoveWindow();'>
+								<span class="slds-icon_container slds-icon_container_circle slds-icon-action-description" title="{$MOD.LBL_HOME_ADDWINDOW}">
+									<svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink"
+											xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#add" />
+									</svg>
+									<span class="slds-assistive-text">{$MOD.LBL_HOME_ADDWINDOW}</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a>
+								<span class="slds-icon_container slds-icon_container_circle homeactions">
+									<svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+										<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#threedots_vertical"></use>
+									</svg>
+								</span>
+							</a>
+
+							<div class="slds-dropdown slds-dropdown_right slds-dropdown_actions homeactions_items">
+								<ul class="slds-dropdown__list" role="menu">
+									<li class="slds-dropdown__item" role="presentation">
+										<a role="menuitem" tabindex="0" onclick="fnvshobj(this,'miniCal');getITSMiniCal('');">
+											<span class="slds-truncate" title="Overflow Item One">
+												{* Calendar button *}
+												{if $CALENDAR_DISPLAY eq 'true'}
+													{$canusecalendar = true}
+													{if $CHECK.Calendar != 'yes'}
+														{$canusecalendar = false}
+													{/if}
+												<button
+													class="slds-button slds-button_icon"
+													aria-haspopup="true"
+													{if $canusecalendar == false}disabled=""{/if}
+													title="{$APP.LBL_CALENDAR_TITLE}">
+														<svg class="slds-button__icon" aria-hidden="true">
+															<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#monthlyview"></use>
+														</svg>
+														<span class="slds-assistive-text">
+															{$APP.LBL_CALENDAR_TITLE}
+														</span>
+												</button>
+												<span class="slds-truncate" title="{$APP.LBL_CALENDAR_TITLE}"> {$APP.LBL_CALENDAR_TITLE} </span>
+												{/if}
+											</span>
+										</a>
+									</li>
+									<li class="slds-dropdown__item" role="presentation">
+										<a role="menuitem" tabindex="-1" 
+											onClick="fnvshobj(this,'wclock');">
+										{* World clock button *}
+										{if $WORLD_CLOCK_DISPLAY eq 'true'}
+										<button
+											class="slds-button slds-button_icon"
+											aria-haspopup="true"
+											title="{$APP.LBL_CLOCK_TITLE}">
+												<svg class="slds-button__icon" aria-hidden="true">
+													<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#world"></use>
+												</svg>
+												<span class="slds-assistive-text">
+													{$APP.LBL_CLOCK_TITLE}
+												</span>
+										</button>
+										<span class="slds-truncate" title="{$APP.LBL_CLOCK_TITLE}"> {$APP.LBL_CLOCK_TITLE} </span>
+										{/if}
+										</a>
+									</li>
+									<li class="slds-dropdown__item" role="presentation">
+										<a id='changeLayoutDivBtn' role="menuitem" tabindex="-1">
+										{* Change layout button *}
+											<button
+												class="slds-button slds-button_icon"
+												aria-haspopup="true"
+												title="{$MOD.LBL_HOME_LAYOUT}">
+													<svg class="slds-button__icon" aria-hidden="true">
+														<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#layout"></use>
+													</svg>
+													<span class="slds-assistive-text">
+														{$MOD.LBL_HOME_LAYOUT}
+													</span>
+											</button>
+											<span class="slds-truncate" title="{$MOD.LBL_HOME_LAYOUT}"> {$MOD.LBL_HOME_LAYOUT} </span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -360,42 +497,59 @@
 </div>
 
 
-<div id="changeLayoutDiv" class="layerPopup" style="z-index:2000; display:none;">
-	<table>
-	<tr class="layerHeadingULine">
-		<td class="big">
-			{$MOD.LBL_HOME_LAYOUT}
-		</td>
-		<td>
-			<img onclick="hideOptions('changeLayoutDiv');" src="{'close.gif'|@vtiger_imageurl:$THEME}" align="right" style="cursor: pointer;border:0;max-width:initial;"/>
-		</td>
-	</tr>
-	<tr id="numberOfColumns">
-		<td class="dvtCellLabel" align="right">
-			{$MOD.LBL_NUMBER_OF_COLUMNS}
-		</td>
-		<td class="dvtCellLabel">
-			<select id="layoutSelect" class="small">
-				<option value="2">
-					{$MOD.LBL_TWO_COLUMN}
-				</option>
-				<option value="3">
-					{$MOD.LBL_THREE_COLUMN}
-				</option>
-				<option value="4">
-					{$MOD.LBL_FOUR_COLUMN}
-				</option>
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<td align="right">
-			<input type="button" name="save" value=" &nbsp;{$APP.LBL_SAVE_BUTTON_LABEL}&nbsp; " id="savebtn" class="crmbutton small save" onclick="saveLayout();">
-		</td>
-		<td align="left">
-			<input type="button" name="cancel" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" class="crmbutton small cancel" onclick="hideOptions('changeLayoutDiv');">
-		</td>
-	</tr>
+{*<!-- change layout modal -->*}
+<section id="changeLayoutDivHome" role="dialog" tabindex="-1" aria-modal="true" aria-describedby="changeLayoutDivContent" class="slds-modal slds-modal_small">
+	<div class="slds-modal__container">
+		<header class="slds-modal__header slds-modal__header_empty">
+			<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+			<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+				<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+			</svg>
+			<span class="slds-assistive-text">Close</span>
+			</button>
+		</header>
+		<div class="slds-modal__content slds-p-around_medium" id="changeLayoutDivContent">
+			<fieldset class="slds-form-element">
+				<div class="slds-form-element__control">
+					<div class="slds-radio_button-group layout-icons-group">
+						<span class="slds-button slds-radio_button">
+							<input type="radio" name="layout-colum-selection" id="1-column-layout" value="1" />
+							<label for="1-column-layout">
+								<svg class="slds-p-top_xx-small" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><title>1 column</title><path d="M71.94,23A5.07,5.07,0,0,1,77,28.06V71.94A5.07,5.07,0,0,1,71.94,77H28.06A5.07,5.07,0,0,1,23,71.94V28.06A5.07,5.07,0,0,1,28.06,23H71.94m0-1H28.06A6.06,6.06,0,0,0,22,28.06V71.94A6.06,6.06,0,0,0,28.06,78H71.94A6.06,6.06,0,0,0,78,71.94V28.06A6.06,6.06,0,0,0,71.94,22Z" transform="translate(-22 -22)" style="fill:#706e6b"/><rect x="5.5" y="5.5" width="45" height="45" rx="3.03" style="fill:#706e6b"/></svg>
+								1 Column
+							</label> 
+						</span>
+						<span class="slds-button slds-radio_button">
+							<input type="radio" name="layout-colum-selection" id="2-column-layout" value="2" />
+							<label for="2-column-layout">
+								<svg class="slds-p-top_xx-small" id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><title>{$MOD.LBL_TWO_COLUMN}</title><path d="M49.94,1A5.08,5.08,0,0,1,55,6.06V49.94A5.08,5.08,0,0,1,49.94,55H6.06A5.08,5.08,0,0,1,1,49.94V6.06A5.08,5.08,0,0,1,6.06,1H49.94m0-1H6.06A6.06,6.06,0,0,0,0,6.06V49.94A6.06,6.06,0,0,0,6.06,56H49.94A6.06,6.06,0,0,0,56,49.94V6.06A6.06,6.06,0,0,0,49.94,0Z" style="fill:#706e6b"/><path d="M32.77,5.5H47a2.85,2.85,0,0,1,2.62,3V47.47a2.85,2.85,0,0,1-2.62,3H32.77a2.85,2.85,0,0,1-2.62-3V8.53A2.85,2.85,0,0,1,32.77,5.5Z" style="fill:#706e6b"/><path d="M9,5.5H23.23a2.85,2.85,0,0,1,2.62,3V47.47a2.85,2.85,0,0,1-2.62,3H9a2.85,2.85,0,0,1-2.62-3V8.53A2.85,2.85,0,0,1,9,5.5Z" style="fill:#706e6b"/></svg>
+								{$MOD.LBL_TWO_COLUMN}
+							</label> 
+						</span>
+						<span class="slds-button slds-radio_button">
+							<input type="radio" name="layout-colum-selection" id="3-column-layout" value="3" />
+							<label for="3-column-layout">
+							<svg class="slds-p-top_xx-small" id="Layer_3" data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><title>{$MOD.LBL_THREE_COLUMN}</title><path d="M49.94,1A5.08,5.08,0,0,1,55,6.06V49.94A5.08,5.08,0,0,1,49.94,55H6.06A5.08,5.08,0,0,1,1,49.94V6.06A5.08,5.08,0,0,1,6.06,1H49.94m0-1H6.06A6.06,6.06,0,0,0,0,6.06V49.94A6.06,6.06,0,0,0,6.06,56H49.94A6.06,6.06,0,0,0,56,49.94V6.06A6.06,6.06,0,0,0,49.94,0Z" style="fill:#706e6b"/><path d="M39.15,5.5h8.76a2.16,2.16,0,0,1,1.94,2.32V48.18a2.16,2.16,0,0,1-1.94,2.32H39.15a2.16,2.16,0,0,1-1.94-2.32V7.82A2.16,2.16,0,0,1,39.15,5.5Z" style="fill:#706e6b"/><path d="M23.62,5.5h8.76a2.16,2.16,0,0,1,1.94,2.32V48.18a2.16,2.16,0,0,1-1.94,2.32H23.62a2.16,2.16,0,0,1-1.94-2.32V7.82A2.16,2.16,0,0,1,23.62,5.5Z" style="fill:#706e6b"/><path d="M8.09,5.5h8.76a2.16,2.16,0,0,1,1.94,2.32V48.18a2.16,2.16,0,0,1-1.94,2.32H8.09a2.16,2.16,0,0,1-1.94-2.32V7.82A2.16,2.16,0,0,1,8.09,5.5Z" style="fill:#706e6b"/></svg>
+								{$MOD.LBL_THREE_COLUMN}
+							</label> 
+						</span>
+						<span class="slds-button slds-radio_button">
+							<input type="radio" name="layout-colum-selection" id="4-column-layout" value="4" />
+							<label for="4-column-layout">
+							<svg class="slds-p-top_xx-small" id="Layer_4" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><title>{$MOD.LBL_FOUR_COLUMN}</title><path d="M43.41,5.79h6.18c.62,0,1.13.72,1.13,1.59V49.2c0,.88-.51,1.59-1.13,1.59H43.41c-.62,0-1.13-.71-1.13-1.59V7.38C42.28,6.51,42.79,5.79,43.41,5.79Z" style="fill:#706e6b"/><path d="M31.09,5.79h6.18c.62,0,1.13.72,1.13,1.59V49.2c0,.88-.51,1.59-1.13,1.59H31.09c-.63,0-1.13-.71-1.13-1.59V7.38C30,6.51,30.46,5.79,31.09,5.79Z" style="fill:#706e6b"/><path d="M18.76,5.79h6.18c.63,0,1.13.72,1.13,1.59V49.2c0,.88-.5,1.59-1.13,1.59H18.76c-.62,0-1.13-.71-1.13-1.59V7.38C17.63,6.51,18.14,5.79,18.76,5.79Z" style="fill:#706e6b"/><path d="M6.41,5.79h6.18c.62,0,1.13.72,1.13,1.59V49.2c0,.88-.51,1.59-1.13,1.59H6.41c-.62,0-1.13-.71-1.13-1.59V7.38C5.28,6.51,5.79,5.79,6.41,5.79Z" style="fill:#706e6b"/><path d="M49.94,1A5.08,5.08,0,0,1,55,6.06V49.94A5.08,5.08,0,0,1,49.94,55H6.06A5.08,5.08,0,0,1,1,49.94V6.06A5.08,5.08,0,0,1,6.06,1H49.94m0-1H6.06A6.06,6.06,0,0,0,0,6.06V49.94A6.06,6.06,0,0,0,6.06,56H49.94A6.06,6.06,0,0,0,56,49.94V6.06A6.06,6.06,0,0,0,49.94,0Z" style="fill:#706e6b"/></svg>
+								{$MOD.LBL_FOUR_COLUMN}
+							</label> 
+						</span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<footer class="slds-modal__footer">
+			<button class="slds-button slds-button_neutral layoutModalCancel">Cancel</button>
+			<button class="slds-button slds-button_brand" id='layoutModalSave' onclick="saveLayout();">Save</button>
+		</footer>
+	</div>
+</section>
+{*<!-- change layout modal end -->*}
+<div class="slds-backdrop slds-backdrop_open overlay" style="display: none"></div>
 
-	</table>
-</div>

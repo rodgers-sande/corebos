@@ -62,7 +62,6 @@ function closeLayoutModal() {
 	$('.slds-backdrop_open.overlay').hide();
 	$('#changeLayoutDivHome').removeClass('slds-fade-in-open');
 }
-
 $('.layoutModalCancel').on('click',function(){
 	closeLayoutModal();
 });
@@ -74,7 +73,6 @@ document.addEventListener('keydown', function(event){
 });
 
 // Resizing widgets
-
 $('.layoutModalCancel').on('click',function(){
 	closeLayoutModal();
 });
@@ -103,4 +101,11 @@ $('#4-column-layout').click( function() {
 	});
 });
 
-	
+//Expand Options menu
+function expandGrid(id){
+	$(`#gridOption${id}`).toggle();
+}
+
+function hideExpandGrid() {
+	$('.expand_gridoptions').hide();
+}

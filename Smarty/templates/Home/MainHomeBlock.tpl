@@ -28,7 +28,7 @@
 							<div class="slds-page-header__control">
 								<ul class="slds-button-group-list slds-grid_vertical-align-center">
 									<li class="slds-p-around_xx-small">
-										<button class="slds-button gridoptions_icon">
+										<button class="slds-button gridoptions_icon" onclick='expandGrid({$tablestuff.Stuffid})'>
 											<span class="slds-icon_container slds-icon-utility-threedots">
 												<svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
 													<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#threedots"></use>
@@ -36,7 +36,7 @@
 											</span>
 										</button>
 									</li>
-									<li class="slds-p-around_xx-small expand_gridoptions">
+									<li class="slds-p-around_xx-small expand_gridoptions" id='gridOption{$tablestuff.Stuffid}' onmouseleave='hideExpandGrid()'>
 										<ul class="slds-button-group-list slds-grid_vertical-align-center">
 											<li class="slds-p-around_xx-small" id="refresh_{$tablestuff.Stuffid}">
 												<button class="slds-button">

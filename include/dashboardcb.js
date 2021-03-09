@@ -48,6 +48,10 @@ $('#addWidgetsDiv_').on('click',function(){
 	}
 });
 
+$('#addmodule').on('click',function(){
+	$('.slds-backdrop_open.overlay').show();
+});
+
 // Change Layout - Close modal 
 var modal = document.getElementById("changeLayoutDivHome");
 
@@ -65,6 +69,10 @@ function closeLayoutModal() {
 $('.layoutModalCancel').on('click',function(){
 	closeLayoutModal();
 });
+
+function closeOverlay() {
+	$('.slds-backdrop_open.overlay').hide();
+}
 
 document.addEventListener('keydown', function(event){
 	if(event.key === "Escape"){

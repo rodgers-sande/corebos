@@ -226,6 +226,12 @@ function setPrimaryFld(Primeval) {
  */
 function showEditrow(sid) {
 	document.getElementById('editRowmodrss_'+sid).className='show_tab';
+	/** This function shows the black overlay behind the edit popup */
+	if (document.getElementById('editRowmodrss_'+sid).classList.contains("show_tab")){
+	$('.slds-backdrop_open.overlay').show();
+	} else {
+	$('.slds-backdrop_open.overlay').hide();
+	}
 }
 
 /**
@@ -234,6 +240,8 @@ function showEditrow(sid) {
  */
 function cancelEntries(editRow) {
 	document.getElementById(editRow).className='hide_tab';
+	/** This function hides the black overlay behind the edit popup */
+	closeLayoutModal();
 }
 
 /**

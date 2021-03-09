@@ -360,135 +360,198 @@
 	</div>
 
 	{*<!-- the following div is used to display the contents for the add widget window -->*}
-	<div id="addWidgetsDiv" class="layerPopup" style="z-index:2000; display:none; width:400px;">
-		<input type="hidden" name="stufftype" id="stufftype_id">
-		<table width="100%" border="0" cellpadding="5" cellspacing="0" class="layerHeadingULine">
-		<tr>
-			<td class="layerPopupHeading" align="left" id="divHeader"></td>
-			<td align="right"><a href="javascript:;" onclick="fnhide('addWidgetsDiv');document.getElementById('stufftitle_id').value='';">
-				<img src="{'close.gif'|@vtiger_imageurl:$THEME}" style="border:0;max-width:initial;" align="absmiddle" /></a>
-			</td>
-		</tr>
-		</table>
-		<table border=0 cellspacing=0 cellpadding=5 width=95% align=center>
-		<tr>
-			<td class=small >
-			{*<!-- popup specific content fill in starts -->*}
-			<table border="0" cellspacing="0" cellpadding="3" width="100%" align="center" bgcolor="white">
-			<tr id="StuffTitleId" style="display:block;">
-				<td class="dvtCellLabel" width="110" align="right">
-					{$MOD.LBL_HOME_STUFFTITLE}
-					<font color='red'>*</font>
-				</td>
-				<td class="dvtCellInfo" colspan="2" width="300">
-					<input type="text" name="stufftitle" id="stufftitle_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:57%">
-				</td>
-			</tr>
-			{*<!--
-			<tr id="homeURLField" style="display:block;">
-				<td class="dvtCellLabel" width="110" align="right">
-					{$MOD.LBL_URL}
-					<font color='red'>*</font>
-				</td>
-				<td class="dvtCellInfo" colspan="2" width="300">
-					<input type="text" name="url" id="url_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:57%">
-				</td>
-			</tr>
-			-->*}
-			<tr id="showrow">
-				<td class="dvtCellLabel" width="110" align="right">{$MOD.LBL_HOME_SHOW}</td>
-				<td class="dvtCellInfo" width="300" colspan="2">
-					<select name="maxentries" id="maxentryid" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
-						{section name=iter start=1 loop=13 step=1}
-						<option value="{$smarty.section.iter.index}">{$smarty.section.iter.index}</option>
-						{/section}
-					</select>&nbsp;&nbsp;{$MOD.LBL_HOME_ITEMS}
-				</td>
-			</tr>
-			<tr id="moduleNameRow" style="display:block">
-				<td class="dvtCellLabel" width="110" align="right">{$MOD.LBL_HOME_MODULE}</td>
-				<td width="300" class="dvtCellInfo" colspan="2">
-					<select name="selmodule" id="selmodule_id" onchange="setFilter(this)" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
-						{foreach item=arr from=$MODULE_NAME}
-							{assign var="MODULE_LABEL" value=$arr.1|getTranslatedString:$arr.1}
-							<option value="{$arr.1}">{$MODULE_LABEL}</option>
-						{/foreach}
-					</select>
-					<input type="hidden" name="fldname">
-				</td>
-			</tr>
-			<tr id="moduleFilters" style="display:block">
-				<td class="dvtCellLabel" id="filterby" align="right" width="110" >{$MOD.LBL_HOME_FILTERBY}</td>
-				<td class="dvtCellLabel" id="filterbyim" align="right" width="110" ><img width="27" height="27" alt"{$MOD.LBL_HOME_ADDWINDOW}" onClick='filterValidate();' onMouseOut='fnRemoveWindow();' src="{'btnL3Add.gif'|@vtiger_imageurl:$THEME}" border="0" title="{$MOD.LBL_HOME_ADDWINDOW}" style="cursor:pointer;">
-					&nbsp;{$MOD.LBL_HOME_FILTERBY}
-				</td>
-				<td id="selModFilter_id" width="300" colspan="2" class="dvtCellInfo"> </td>
-			</tr>
-			<tr id="moduleLabelsRow" style="display:block">
-				<td class="dvtCellLabel" align="right" id="aggr" width="110">{$MOD.LBL_HOME_AGGREGATE}</td>
-				<td id="selModAggregate_id" width="300" colspan="2" class="dvtCellInfo">
-					<select class="detailedViewTextBox" id="selAggregateid" name="selAggregatename" style="width:60%">
-					<option value="sum">{'SUM'|getTranslatedString:'Reports'}</option>
-					<option value="avg">{'AVG'|getTranslatedString:'Reports'}</option>
-					<option value="max">{'MAX'|getTranslatedString:'Reports'}</option>
-					<option value="min">{'MIN'|getTranslatedString:'Reports'}</option>
-					<option value="count">{'COUNT'|getTranslatedString:'Reports'}</option>
-					</select>
-				</td>
-			</tr>
-			<tr id="moduleCombosRow" style="display:block">
-				<td class="dvtCellLabel" align="right" id="fields" width="110">{$MOD.LBL_HOME_AG_FIELDS}</td>
-				<td id="selModPrime_id" width="300" colspan="2" class="dvtCellInfo"></td>
-			</tr>
-			<tr id="rssRow" style="display:none">
-				<td class="dvtCellLabel" width="110" align="right">{$MOD.LBL_HOME_RSSURL}<font color='red'>*</font></td>
-				<td width="300" colspan="2" class="dvtCellInfo"><input type="text" name="txtRss" id="txtRss_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:58%"></td>
-			</tr>
-			<tr id="dashNameRow" style="display:none">
-				<td class="dvtCellLabel" width="110" align="right">{$MOD.LBL_HOME_DASHBOARD_NAME}</td>
-				<td id="selDashName" class="dvtCellInfo" colspan="2" width="300"></td>
-			</tr>
-			<tr id="homewidget" style="display:none">
-				<td id="home" class="dvtCellInfo" colspan="2" width="300"></td>
-			</tr>
-			<tr id="dashTypeRow" style="display:none">
-				<td class="dvtCellLabel" align="right" width="110">{$MOD.LBL_HOME_DASHBOARD_TYPE}</td>
-				<td id="selDashType" class="dvtCellInfo" width="300" colspan="2">
-					<select name="seldashtype" id="seldashtype_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
-						<option value="horizontalbarchart">{$MOD.LBL_HOME_HORIZONTAL_BARCHART}</option>
-						<option value="verticalbarchart">{$MOD.LBL_HOME_VERTICAL_BARCHART}</option>
-						<option value="piechart">{$MOD.LBL_HOME_PIE_CHART}</option>
-					</select>
-				</td>
-			</tr>
-			<tr id="reportNameRow" style="display:none">
-				<td class="dvtCellLabel" width="110" align="right">{'LBL_HOME_REPORT_NAME'|@getTranslatedString:$MODULE}</td>
-				<td id="selReportName" class="dvtCellInfo" colspan="2" width="300"></td>
-			</tr>
-			<tr id="reportTypeRow" style="display:none">
-				<td class="dvtCellLabel" align="right" width="110">{'LBL_HOME_REPORT_TYPE'|@getTranslatedString:$MODULE}</td>
-				<td id="selReportType" class="dvtCellInfo" width="300" colspan="2">
-					<select name="selreporttype" id="selreportcharttype_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
-						<option value="horizontalbarchart">{$MOD.LBL_HOME_HORIZONTAL_BARCHART}</option>
-						<option value="verticalbarchart">{$MOD.LBL_HOME_VERTICAL_BARCHART}</option>
-						<option value="piechart">{$MOD.LBL_HOME_PIE_CHART}</option>
-					</select>
-				</td>
-			</tr>
-		</table>
-			{*<!-- popup specific content fill in ends -->*}
-			</td>
-		</tr>
-		</table>
-
-		<table border=0 cellspacing=0 cellpadding=5 width=95% align="center">
+	<div id="addWidgetsDiv" class="layerPopup addWidgetsModal slds-modal slds-fade-in-open" style="display:none;">
+		<div class="slds-modal__container">
+			<header class="slds-modal__header slds-modal__header_empty">
+			<div id="divHeader" class="slds-text-heading_medium"></div>
+			<button onclick="fnhide('addWidgetsDiv');document.getElementById('stufftitle_id').value='';" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+				<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+				<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+				</svg>
+				<span class="slds-assistive-text">Close</span>
+			</button>
+			</header>
+			<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+			<input type="hidden" name="stufftype" id="stufftype_id">
+			<div class="slds-grid">
+				<div class="slds-col" id="StuffTitleId">
+					<div class="slds-form-element">
+						<label class="slds-form-element__label" for="text-input-id-1">
+							<abbr class="slds-required" title="required">* </abbr>{$MOD.LBL_HOME_STUFFTITLE}</label>
+							<div class="slds-form-element__control">
+								<input type="text" name="stufftitle" id="stufftitle_id" class="detailedViewTextBox slds-input">
+							</div>
+					</div>
+					<div class="slds-form-element" id="showrow">
+						<label class="slds-form-element__label" for="maxentryid" id="fixed-text-label">{$MOD.LBL_HOME_SHOW}</label>
+							<div class="slds-form-element__control slds-input-has-fixed-addon">
+								<select name="maxentries" id="maxentryid" class="slds-select">
+									{section name=iter start=1 loop=13 step=1}
+									<option value="{$smarty.section.iter.index}">{$smarty.section.iter.index}</option>
+									{/section}
+								</select>
+								<span class="slds-form-element__addon" id="fixed-text-addon-post">{$MOD.LBL_HOME_ITEMS}</span>
+							</div>
+					</div>
+					<div class="slds-form-element" id="moduleNameRow">
+						<label class="slds-form-element__label" for="moduleNameRow"> {$MOD.LBL_HOME_MODULE}</label>
+						<div class="slds-form-element__control">
+							<div class="slds-select_container">
+							<select name="selmodule" id="selmodule_id" onchange="setFilter(this)" class="slds-select">
+							{foreach item=arr from=$MODULE_NAME}
+								{assign var="MODULE_LABEL" value=$arr.1|getTranslatedString:$arr.1}
+								<option value="{$arr.1}">{$MODULE_LABEL}</option>
+							{/foreach}
+						</select>
+						<input type="hidden" name="fldname">
+							</div>
+						</div>
+					</div>
+					<div class="slds-form-element slds-grid slds-grid_vertical" id="moduleFilters">
+						<div class="slds-col" id="filterby">
+							<label class="slds-form-element__label" for="moduleNameRow"> {$MOD.LBL_HOME_FILTERBY}</label>
+						</div>
+						<div class="slds-col" id="filterbyim">
+							<button class="slds-button slds-button_icon slds-button_icon slds-button_icon-border" aria-haspopup="true" title="{$MOD.LBL_HOME_FILTERBY}" onClick='filterValidate();' onMouseOut='fnRemoveWindow();'> 
+								<svg class="slds-button__icon" aria-hidden="true">
+									<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
+								</svg>
+								<span class="slds-assistive-text">{$MOD.LBL_HOME_FILTERBY}</span>
+							</button>
+						</div>
+						<div class="slds-col" id="selModFilter_id">
+						</div>
+					</div>
+					<div class="slds-form-element" id="moduleLabelsRow">
+						<label class="slds-form-element__label" for="moduleLabelsRow" id="aggr"> {$MOD.LBL_HOME_AGGREGATE} </label>
+						<div class="slds-form-element__control">
+							<select class="slds-select" id="selModAggregate_id" multiple="">
+								<option value="sum">{'SUM'|getTranslatedString:'Reports'}</option>
+								<option value="avg">{'AVG'|getTranslatedString:'Reports'}</option>
+								<option value="max">{'MAX'|getTranslatedString:'Reports'}</option>
+								<option value="min">{'MIN'|getTranslatedString:'Reports'}</option>
+								<option value="count">{'COUNT'|getTranslatedString:'Reports'}</option>
+							</select>
+						</div>
+					</div>
+					<div class="slds-form-element" id="moduleCombosRow">
+						<label class="slds-form-element__label" for="moduleCombosRow" id="fields">
+							{$MOD.LBL_HOME_AG_FIELDS} </label>
+						<div class="slds-form-element__control" id="selModPrime_id">
+						</div>
+					</div>
+				</div>
+			</div>
+			<table border=0 cellspacing=0 cellpadding=5 width=95% align=center>
 			<tr>
-				<td align="right">
-					<input type="button" name="save" value=" &nbsp;{$APP.LBL_SAVE_BUTTON_LABEL}&nbsp; " id="savebtn" class="crmbutton small save" onclick="frmValidate()"></td>
-				<td align="left"><input type="button" name="cancel" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" class="crmbutton small cancel" onclick="fnhide('addWidgetsDiv');document.getElementById('stufftitle_id').value='';">
+				<td class=small >
+				{*<!-- popup specific content fill in starts -->*}
+				<table border="0" cellspacing="0" cellpadding="3" width="100%" align="center" bgcolor="white">
+				
+				{*<!--
+				<tr id="homeURLField" style="display:block;">
+					<td class="dvtCellLabel" width="110" align="right">
+						{$MOD.LBL_URL}
+						<font color='red'>*</font>
+					</td>
+					<td class="dvtCellInfo" colspan="2" width="300">
+						<input type="text" name="url" id="url_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:57%">
+					</td>
+				</tr>
+				-->*}
+				{*<tr id="showrow">
+					<td class="dvtCellLabel" width="110" align="right">{$MOD.LBL_HOME_SHOW}</td>
+					<td class="dvtCellInfo" width="300" colspan="2">
+						<select name="maxentries" id="maxentryid" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
+							{section name=iter start=1 loop=13 step=1}
+							<option value="{$smarty.section.iter.index}">{$smarty.section.iter.index}</option>
+							{/section}
+						</select>&nbsp;&nbsp;{$MOD.LBL_HOME_ITEMS}
+					</td>
+				</tr>*}
+				{*<tr id="moduleNameRow" style="display:block">
+					<td class="dvtCellLabel" width="110" align="right">{$MOD.LBL_HOME_MODULE}</td>
+					<td width="300" class="dvtCellInfo" colspan="2">
+						<select name="selmodule" id="selmodule_id" onchange="setFilter(this)" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
+							{foreach item=arr from=$MODULE_NAME}
+								{assign var="MODULE_LABEL" value=$arr.1|getTranslatedString:$arr.1}
+								<option value="{$arr.1}">{$MODULE_LABEL}</option>
+							{/foreach}
+						</select>
+						<input type="hidden" name="fldname">
+					</td>
+				</tr>*}
+				{*<tr id="moduleFilters" style="display:block">
+					<td class="dvtCellLabel" id="filterby" align="right" width="110" >{$MOD.LBL_HOME_FILTERBY}</td>
+					<td class="dvtCellLabel" id="filterbyim" align="right" width="110" ><img width="27" height="27" alt"{$MOD.LBL_HOME_ADDWINDOW}" onClick='filterValidate();' onMouseOut='fnRemoveWindow();' src="{'btnL3Add.gif'|@vtiger_imageurl:$THEME}" border="0" title="{$MOD.LBL_HOME_ADDWINDOW}" style="cursor:pointer;">
+						&nbsp;{$MOD.LBL_HOME_FILTERBY}
+					</td>
+					<td id="selModFilter_id" width="300" colspan="2" class="dvtCellInfo"> </td>
+				</tr>*}
+				{*<tr id="moduleLabelsRow" style="display:block">
+					<td class="dvtCellLabel" align="right" id="aggr" width="110">{$MOD.LBL_HOME_AGGREGATE}</td>
+					<td id="selModAggregate_id" width="300" colspan="2" class="dvtCellInfo">
+						<select class="detailedViewTextBox" id="selAggregateid" name="selAggregatename" style="width:60%">
+						<option value="sum">{'SUM'|getTranslatedString:'Reports'}</option>
+						<option value="avg">{'AVG'|getTranslatedString:'Reports'}</option>
+						<option value="max">{'MAX'|getTranslatedString:'Reports'}</option>
+						<option value="min">{'MIN'|getTranslatedString:'Reports'}</option>
+						<option value="count">{'COUNT'|getTranslatedString:'Reports'}</option>
+						</select>
+					</td>
+				</tr>*}
+				{*<tr id="moduleCombosRow" style="display:block">
+					<td class="dvtCellLabel" align="right" id="fields" width="110">{$MOD.LBL_HOME_AG_FIELDS}</td>
+					<td id="selModPrime_id" width="300" colspan="2" class="dvtCellInfo"></td>
+				</tr>*}
+				<tr id="rssRow" style="display:none">
+					<td class="dvtCellLabel" width="110" align="right">{$MOD.LBL_HOME_RSSURL}<font color='red'>*</font></td>
+					<td width="300" colspan="2" class="dvtCellInfo"><input type="text" name="txtRss" id="txtRss_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:58%"></td>
+				</tr>
+				<tr id="dashNameRow" style="display:none">
+					<td class="dvtCellLabel" width="110" align="right">{$MOD.LBL_HOME_DASHBOARD_NAME}</td>
+					<td id="selDashName" class="dvtCellInfo" colspan="2" width="300"></td>
+				</tr>
+				<tr id="homewidget" style="display:none">
+					<td id="home" class="dvtCellInfo" colspan="2" width="300"></td>
+				</tr>
+				<tr id="dashTypeRow" style="display:none">
+					<td class="dvtCellLabel" align="right" width="110">{$MOD.LBL_HOME_DASHBOARD_TYPE}</td>
+					<td id="selDashType" class="dvtCellInfo" width="300" colspan="2">
+						<select name="seldashtype" id="seldashtype_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
+							<option value="horizontalbarchart">{$MOD.LBL_HOME_HORIZONTAL_BARCHART}</option>
+							<option value="verticalbarchart">{$MOD.LBL_HOME_VERTICAL_BARCHART}</option>
+							<option value="piechart">{$MOD.LBL_HOME_PIE_CHART}</option>
+						</select>
+					</td>
+				</tr>
+				<tr id="reportNameRow" style="display:none">
+					<td class="dvtCellLabel" width="110" align="right">{'LBL_HOME_REPORT_NAME'|@getTranslatedString:$MODULE}</td>
+					<td id="selReportName" class="dvtCellInfo" colspan="2" width="300"></td>
+				</tr>
+				<tr id="reportTypeRow" style="display:none">
+					<td class="dvtCellLabel" align="right" width="110">{'LBL_HOME_REPORT_TYPE'|@getTranslatedString:$MODULE}</td>
+					<td id="selReportType" class="dvtCellInfo" width="300" colspan="2">
+						<select name="selreporttype" id="selreportcharttype_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
+							<option value="horizontalbarchart">{$MOD.LBL_HOME_HORIZONTAL_BARCHART}</option>
+							<option value="verticalbarchart">{$MOD.LBL_HOME_VERTICAL_BARCHART}</option>
+							<option value="piechart">{$MOD.LBL_HOME_PIE_CHART}</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+				{*<!-- popup specific content fill in ends -->*}
 				</td>
 			</tr>
-		</table>
+			</table>
+
+			</div>
+			<footer class="slds-modal__footer">
+			<button class="slds-button slds-button_neutral" onclick="fnhide('addWidgetsDiv');document.getElementById('stufftitle_id').value='';"> {$APP.LBL_CANCEL_BUTTON_LABEL} </button>
+			<button class="slds-button slds-button_brand" id="savebtn" onclick="frmValidate()" > {$APP.LBL_SAVE_BUTTON_LABEL} </button>
+			</footer>
+		</div>
+
 	</div>
 </form>
 {*<!-- add widget code ends -->*}
@@ -501,11 +564,14 @@
 <section id="changeLayoutDivHome" role="dialog" tabindex="-1" aria-modal="true" aria-describedby="changeLayoutDivContent" class="slds-modal slds-modal_small">
 	<div class="slds-modal__container">
 		<header class="slds-modal__header slds-modal__header_empty">
-			<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
-			<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
-				<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-			</svg>
-			<span class="slds-assistive-text">Close</span>
+			<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse layoutModalCancel">
+				<span class="slds-icon_container slds-icon-utility-close">
+					<svg class="slds-icon" aria-hidden="true">
+						<use xmlns:xlink="http://www.w3.org/1999/xlink"
+							xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#close" />
+					</svg>
+					<span class="slds-assistive-text">Close</span>
+				</span>
 			</button>
 		</header>
 		<div class="slds-modal__content slds-p-around_medium" id="changeLayoutDivContent">

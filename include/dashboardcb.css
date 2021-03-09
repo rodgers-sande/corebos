@@ -6,6 +6,9 @@
 	--x-main-txt-dark: #F8F8FB;
 	--bg-white: #ffffff;
 	--light-grey: #dddddd;
+	--shadow_1: 0 0px 21.4px -15px rgb(0 0 0 / 6%), 0 0px 40px -15px rgb(0 0 0 / 12%);
+	--shadow_2: 0 1.5px 2.2px -5px rgba(0, 0, 0, 0.017), 0 3.7px 5.3px -5px rgba(0, 0, 0, 0.024), 0 6.9px 10px -5px rgba(0, 0, 0, 0.03), 0 12.3px 17.9px -5px rgba(0, 0, 0, 0.036), 0 23px 33.4px -5px rgba(0, 0, 0, 0.043), 0 55px 80px -5px rgba(0, 0, 0, 0.06);
+	--br_sm: .5rem;
 }
 /*
 	Removing image background
@@ -66,9 +69,9 @@ html {
 
 /* Shadow */
 .dash-decor-1 {
-	box-shadow: 0 0px 21.4px -15px rgba(0, 0, 0, 0.06), 0 0px 40px -15px rgba(0, 0, 0, 0.12);
+	box-shadow: var(--shadow_1);
 	border: 1px solid var(--light-grey);
-	border-radius: .5rem;
+	border-radius: var(--br_sm);
 }
 
 /* Grid Widget*/
@@ -112,6 +115,17 @@ html {
 
 .homeactions:hover .homeactions_items {
 	display: block;
+}
+
+[id^='editRowmodrss_'].show_tab {
+	width: 100%;
+	box-shadow: var(--shadow_2);
+	z-index: 9999;
+	border: 1px solid var(--light-grey);
+	position: absolute;
+	background: var(--bg-white);
+	top: 0;
+	left: 0;
 }
 
 .homeactions_items:hover {
@@ -197,4 +211,10 @@ div#addWidgetDropDown {
 
 .widget_grid {
 	margin-bottom: 1rem;
+}
+
+/* Modal */
+.addWidgetsModal {
+	background: transparent;
+	z-index: 9999;
 }

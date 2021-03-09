@@ -20,7 +20,7 @@ function chooseType(typeName) {
 		typeLabel = alert_arr[typeName];
 	}
 	if (typeLabel == 'defaultwidget') {
-		document.getElementById('divHeader').innerHTML='<b>'+alert_arr.LBL_SELECT+'</b>';
+		document.getElementById('divHeader').innerHTML=''+alert_arr.LBL_SELECT+'';
 		VtigerJS_DialogBox.showbusy();
 		jQuery.ajax({
 			method: 'POST',
@@ -45,7 +45,7 @@ function chooseType(typeName) {
 			document.getElementById('reportTypeRow').style.display='none';
 		});
 	} else {
-		document.getElementById('divHeader').innerHTML='<b>'+alert_arr.LBL_ADD+typeLabel+'</b>';
+		document.getElementById('divHeader').innerHTML=''+alert_arr.LBL_ADD+typeLabel+'';
 	}
 	if (typeName=='Module') {
 		document.getElementById('moduleNameRow').style.display='block';
@@ -292,7 +292,7 @@ function saveEditDash(dashRowId) {
  * @param string sid - the stuffid of the widget
  */
 function DelStuff(sid) {
-	if (confirm(alert_arr.SURE_TO_DELETE)) {
+if (delStuffModal ()) {
 		jQuery.ajax({
 			method: 'POST',
 			url: 'index.php?module=Home&action=HomeAjax&file=HomestuffAjax&homestuffid='+sid,
@@ -312,6 +312,32 @@ function DelStuff(sid) {
 			}
 		});
 	}
+}
+
+function delStuffModal () {
+	let modalItem = document.createElement('div');
+	modalItem.id = 'delStuffModal_1';
+	modalItem.className = 'slds-modal slds-fade-in-open';
+	modalItem.innerHTML = `
+	<div class="slds-modal__container">
+	<header class="slds-modal__header slds-modal__header_empty">
+		<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+		<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+			<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+		</svg>
+		<span class="slds-assistive-text">Close</span>
+		</button>
+	</header>
+	<div class="slds-modal__content slds-p-around_medium">
+		<h3 class="slds-modal__title slds-hyphenate slds-text-align_center"> ${alert_arr.SURE_TO_DELETE} </h3>
+	</div>
+	<footer class="slds-modal__footer">
+		<button class="slds-button slds-button_neutral" id="delStuffCancel">Cancel</button>
+		<button class="slds-button slds-button_brand" id="delStuffComplete">Ok</button>
+	</footer>
+	</div>`;
+	document.body.appendChild(modalItem);
+	openOverlay();
 }
 
 /**

@@ -109,8 +109,8 @@ html {
 
 .homeactions_items {
 	display: none;
-	z-index: 9999;
-	top: 8rem;
+	z-index: 99999;
+	top: 30px;
 }
 
 .homeactions:hover .homeactions_items {
@@ -142,7 +142,6 @@ html {
 
 /* New header */
 div#addWidgetDropDown {
-	top: 8rem !important;
 	left: 90% !important;
 }
 
@@ -217,4 +216,5 @@ div#addWidgetDropDown {
 .addWidgetsModal {
 	background: transparent;
 	z-index: 9999;
+	border: none;
 }

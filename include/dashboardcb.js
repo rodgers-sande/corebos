@@ -74,6 +74,10 @@ function closeOverlay() {
 	$('.slds-backdrop_open.overlay').hide();
 }
 
+function openOverlay() {
+	$('.slds-backdrop_open.overlay').show();
+}
+
 document.addEventListener('keydown', function(event){
 	if(event.key === "Escape"){
 		closeLayoutModal();

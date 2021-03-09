@@ -362,14 +362,15 @@
 	{*<!-- the following div is used to display the contents for the add widget window -->*}
 	<div id="addWidgetsDiv" class="layerPopup addWidgetsModal slds-modal slds-fade-in-open" style="display:none;">
 		<div class="slds-modal__container">
-			<header class="slds-modal__header slds-modal__header_empty">
-			<div id="divHeader" class="slds-text-heading_medium"></div>
+			<header class="slds-modal__header">
+			{*<div id="divHeader" class="slds-text-heading_medium"></div>*}
 			<button onclick="fnhide('addWidgetsDiv');document.getElementById('stufftitle_id').value='';" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
 				<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
 				<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
 				</svg>
 				<span class="slds-assistive-text">Close</span>
 			</button>
+			<h2 id="divHeader" class="slds-modal__title slds-hyphenate"></h2>
 			</header>
 			<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
 			<input type="hidden" name="stufftype" id="stufftype_id">

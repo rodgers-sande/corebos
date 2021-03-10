@@ -2,6 +2,7 @@
 :root {
 	--x-main-bg: #f3f2f2;
 	--x-main-bg-dark: #222C3C;
+	--x-alternative-text: #333;
 	--x-main-txt: #080707;
 	--x-main-txt-dark: #F8F8FB;
 	--bg-white: #ffffff;
@@ -88,6 +89,14 @@ html {
 
 [id^=stuff_]:hover .gridclose_icon, [id^=stuff_]:hover .gridmainfooter {
 	display: block;
+}
+
+[id^=stuffcont_].slds-col {
+	overflow-x: auto;
+}
+
+.widgetcard_header .slds-page-header__title {
+	color: var(--x-alternative-text);
 }
 
 @keyframes closepop {

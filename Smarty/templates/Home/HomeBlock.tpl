@@ -123,29 +123,41 @@
 {if $HOME_STUFFTYPE eq "Module"}
 	<input type=hidden id=more_{$HOME_STUFFID} value="{$HOME_STUFF.ModuleName}"/>
 	<input type=hidden id=cvid_{$HOME_STUFFID} value="{$HOME_STUFF.cvid}">
-	<table border=0 cellspacing=0 cellpadding=2 width=100%>
+	<table cellspacing=0 cellpadding=2 width=60% class='slds-table slds-table_header-hidden slds-table_bordered slds-table_edit slds-tree slds-table_tree' aria-multiselectable=true role="treegrid">
 	{assign var='cvid' value=$HOME_STUFF.cvid}
 	{assign var='modulename' value=$HOME_STUFF.ModuleName}
-	<tr>
-		<td width=5%>
-			&nbsp;
-		</td>
-		{foreach item=header from=$HOME_STUFF.Header}
-		<td align="left">
-			<b>{$header}</b>
-		</td>
-		{/foreach}
-	</tr>
+	<thead>
+		<tr class="slds-line-height_reset">
+			<td width=5%>
+				&nbsp;
+			</td>
+			{foreach item=header from=$HOME_STUFF.Header}
+			<th aria-label="{$header}" aria-sort="none" class="slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
+				<a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="-1">
+					<div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+					<span class="slds-truncate" title="{$header}">{$header}</span>
+					<span class="slds-icon_container slds-icon-utility-arrowdown">
+						<svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
+						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></use>
+						</svg>
+					</span>
+					</div>
+				</a>
+			</th>
+			{/foreach}
+		</tr>
+	</thead>
+	<tbody>
 	{if $HOME_STUFF.Entries|@count > 0}
 		{foreach item=row key=crmid from=$HOME_STUFF.Entries}
- 	<tr>
-		<td>
+ 	<tr aria-level="1" aria-posinset="1" aria-selected="false" aria-setsize="4" class="slds-hint-parent" tabindex="0">
+		<td class="slds-text-align_left slds-truncate" role="gridcell">
 			<a href="index.php?module={$HOME_STUFF.ModuleName}&action=DetailView&record={$crmid}">
 				<img src="{'bookMark.gif'|@vtiger_imageurl:$THEME}" align="absmiddle" border="0" alt="{$APP.LBL_MORE} {$APP.LBL_INFORMATION}" title="{$APP.LBL_MORE} {$APP.LBL_INFORMATION}"/>
 			</a>
 		</td>
 			{foreach item=element from=$row}
-		<td align="left"/>
+		<td class="slds-text-align_left" role="gridcell">
 			{$element}
 		</td>
 			{/foreach}
@@ -154,50 +166,79 @@
 	{else}
 		<div class="componentName">{$APP.LBL_NO_DATA}</div>
 	{/if}
+	</tbody>
 	</table>
 {elseif $HOME_STUFFTYPE eq "CustomWidget"}
 	<input type=hidden id=more_{$HOME_STUFFID} value="{$HOME_STUFF.ModuleName}"/>
 	<input type=hidden id=cvid_{$HOME_STUFFID} value="{$HOME_STUFF.cvid}">
-	<table border=0 cellspacing=0 cellpadding=2 width=100%>
+	<table cellspacing=0 cellpadding=2 width=100% class='slds-table slds-table_header-hidden slds-table_bordered slds-table_edit slds-tree slds-table_tree' aria-multiselectable=true role="treegrid">
 	{assign var='cvid' value=$HOME_STUFF.cvid}
 	{assign var='modulename' value=$HOME_STUFF.ModuleName}
-	<tr>
-		<td width=4%>
-			&nbsp;
-		</td>
-		{foreach item=header from=$HOME_STUFF.Header}
-		<td width=40% align="left">
-			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$header}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-		</td>
-		{/foreach}
-	</tr>
+	<thead>
+		<tr aria-level="1" aria-posinset="1" aria-selected="false" aria-setsize="4" class="slds-hint-parent" tabindex="0">
+			<td width=4% class="slds-text-align_left slds-truncate" role="gridcell">
+				&nbsp;
+			</td>
+			{foreach item=header from=$HOME_STUFF.Header}
+			<th aria-label="{$header}" aria-sort="none" class="slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
+				<a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="-1">
+					<div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+					<span class="slds-truncate" title="{$header}">{$header}</span>
+					<span class="slds-icon_container slds-icon-utility-arrowdown">
+						<svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
+						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></use>
+						</svg>
+					</span>
+					</div>
+				</a>
+			</th>
+			{/foreach}
+		</tr>
+	</thead>
+	<tbody>
 		{foreach item=row key=crmid from=$HOME_STUFF.Entries}
-		<tr>
-			<td width=4%>
+		<tr aria-level="1" aria-posinset="1" aria-selected="false" aria-setsize="4" class="slds-hint-parent" tabindex="0">
+			<td width=4% class="slds-text-align_left slds-truncate" role="gridcell">
 				&nbsp;
 			</td>
 			{foreach item=element from=$row name=aggrow}
-			<td {if $smarty.foreach.aggrow.last}style="text-align: right;"{/if} nowrap width=40%>
+			<td {if $smarty.foreach.aggrow.last}style="text-align: right;"{/if} nowrap width=40% class="slds-text-align_left slds-truncate" role="gridcell">
 				{$element}
 			</td>
 			{/foreach}
 		</tr>
 		{/foreach}
+	</tbody>
 	</table>
 
 {elseif $HOME_STUFFTYPE eq "Default"}
 	<input type=hidden id=more_{$HOME_STUFFID} value="{if isset($HOME_STUFF.Details.ModuleName)}{$HOME_STUFF.Details.ModuleName}{/if}"/>
 	{if is_array($HOME_STUFF.Details.Entries) && $HOME_STUFF.Details.Entries|@count > 0}
-		<table border=0 cellspacing=0 cellpadding=2 width=100%>
-		<tr>
-			<td width=5%>&nbsp;</td>
+		<table cellspacing=0 cellpadding=2 width=100% class='slds-table slds-table_header-hidden slds-table_bordered slds-table_edit slds-tree slds-table_tree' aria-multiselectable=true role="treegrid">
+		<thead>
+		<tr class="slds-line-height_reset">
+			<td width=5%>
+				&nbsp;
+			</td>
 			{foreach item=header from=$HOME_STUFF.Details.Header}
-				<td align="left"><b>{$header}</b></td>
+			<th aria-label="{$header}" aria-sort="none" class="slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
+				<a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="-1">
+					<div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+					<span class="slds-truncate" title="{$header}">{$header}</span>
+					<span class="slds-icon_container slds-icon-utility-arrowdown">
+						<svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
+						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></use>
+						</svg>
+					</span>
+					</div>
+				</a>
+			</th>
 			{/foreach}
 		</tr>
+	</thead>
 		{foreach item=row key=crmid from=$HOME_STUFF.Details.Entries}
 			<tr>
-				<td>
+				<td class="slds-text-align_left slds-truncate" role="gridcell">
 				{if isset($HOME_STUFF.Details.Title)}
 					{if $HOME_STUFF.Details.Title.1 eq "My Sites"}
 					<img src="{'bookMark.gif'|@vtiger_imageurl:$THEME}" align="absmiddle" border="0" alt="{$APP.LBL_MORE} {$APP.LBL_INFORMATION}" title="{$APP.LBL_MORE} {$APP.LBL_INFORMATION}"/>
@@ -211,7 +252,7 @@
 				{/if}
 				</td>
 				{foreach item=element from=$row}
-				<td align="left"/> {$element}</td>
+				<td class="slds-text-align_left slds-truncate" role="gridcell"> {$element}</td>
 				{/foreach}
 			</tr>
 		{/foreach}
@@ -222,10 +263,10 @@
 
 {elseif $HOME_STUFFTYPE eq "RSS"}
 	<input type=hidden id=more_{$HOME_STUFFID} value="{$HOME_STUFF.Entries.More}"/>
-	<table border=0 cellspacing=0 cellpadding=2 width=100%>
+	<table cellspacing=0 cellpadding=2 width=100% class='slds-table slds-table_header-hidden slds-table_bordered slds-table_edit slds-tree slds-table_tree' aria-multiselectable=true role="treegrid">
 		{foreach item="details" from=$HOME_STUFF.Entries.Details}
 			<tr>
-				<td align="left">
+				<td class="slds-text-align_left slds-truncate" role="gridcell">
 					<a href="{$details.1}" target="_blank">
 						{$details.0|truncate:50}...
 					</a>
@@ -236,18 +277,18 @@
 
 {elseif $HOME_STUFFTYPE eq "DashBoard"}
 	<input type=hidden id=more_{$HOME_STUFFID} value="{$DASHDETAILS[$HOME_STUFFID].DashType}"/>
-	<table border=0 cellspacing=0 cellpadding=5 width=100%>
+	<table cellspacing=0 cellpadding=5 width=100% class='slds-table slds-table_header-hidden slds-table_bordered slds-table_edit slds-tree slds-table_tree' aria-multiselectable=true role="treegrid">
 		<tr>
-			<td align="left">{$HOME_STUFF}</td>
+			<td class="slds-text-align_left slds-truncate" role="gridcell">{$HOME_STUFF}</td>
 		</tr>
 	</table>
 {elseif $HOME_STUFFTYPE eq 'ReportCharts' && isset($HOME_STUFF.error)}
 	{$HOME_STUFF.error}
 {elseif $HOME_STUFFTYPE eq "ReportCharts"}
 	<input type=hidden id=more_{$HOME_STUFFID} value="{$DASHDETAILS[$HOME_STUFFID].ReportId}"/>
-	<table border=0 cellspacing=0 cellpadding=5 width=100%>
+	<table cellspacing=0 cellpadding=5 width=100%>
 		<tr>
-			<td align="left">
+			<td class="slds-text-align_left slds-truncate" role="gridcell">
 			<canvas id="homechart{$HOME_STUFFID}" style="width:500px;height:250px;margin:auto;padding:10px;"></canvas>
 <script type="text/javascript">
 window.doChart{$HOME_STUFFID} = function(charttype) {ldelim}

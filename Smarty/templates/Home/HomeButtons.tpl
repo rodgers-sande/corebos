@@ -376,17 +376,17 @@
 			<input type="hidden" name="stufftype" id="stufftype_id">
 			<div class="slds-grid">
 				<div class="slds-col" id="StuffTitleId">
-					<div class="slds-form-element">
+					<div class="slds-form-element slds-p-around_xx-small">
 						<label class="slds-form-element__label" for="text-input-id-1">
 							<abbr class="slds-required" title="required">* </abbr>{$MOD.LBL_HOME_STUFFTITLE}</label>
 							<div class="slds-form-element__control">
 								<input type="text" name="stufftitle" id="stufftitle_id" class="detailedViewTextBox slds-input">
 							</div>
 					</div>
-					<div class="slds-form-element" id="showrow">
+					<div class="slds-form-element slds-p-around_xx-small" id="showrow">
 						<label class="slds-form-element__label" for="maxentryid" id="fixed-text-label">{$MOD.LBL_HOME_SHOW}</label>
 							<div class="slds-form-element__control slds-input-has-fixed-addon">
-								<select name="maxentries" id="maxentryid" class="slds-select">
+								<select name="maxentries" id="maxentryid" class="slds-select slds-page-header__meta-text">
 									{section name=iter start=1 loop=13 step=1}
 									<option value="{$smarty.section.iter.index}">{$smarty.section.iter.index}</option>
 									{/section}
@@ -394,11 +394,11 @@
 								<span class="slds-form-element__addon" id="fixed-text-addon-post">{$MOD.LBL_HOME_ITEMS}</span>
 							</div>
 					</div>
-					<div class="slds-form-element" id="moduleNameRow">
+					<div class="slds-form-element slds-p-around_xx-small" id="moduleNameRow">
 						<label class="slds-form-element__label" for="moduleNameRow"> {$MOD.LBL_HOME_MODULE}</label>
 						<div class="slds-form-element__control">
-							<div class="slds-select_container">
-							<select name="selmodule" id="selmodule_id" onchange="setFilter(this)" class="slds-select">
+							<div class="slds-select slds-page-header__meta-text_container">
+							<select name="selmodule" id="selmodule_id" onchange="setFilter(this)" class="slds-select slds-page-header__meta-text">
 							{foreach item=arr from=$MODULE_NAME}
 								{assign var="MODULE_LABEL" value=$arr.1|getTranslatedString:$arr.1}
 								<option value="{$arr.1}">{$MODULE_LABEL}</option>
@@ -408,7 +408,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="slds-form-element slds-grid slds-grid_vertical" id="moduleFilters">
+					<div class="slds-form-element slds-grid slds-grid_vertical slds-p-around_xx-small" id="moduleFilters">
 						<div class="slds-col" id="filterby">
 							<label class="slds-form-element__label" for="moduleNameRow"> {$MOD.LBL_HOME_FILTERBY}</label>
 						</div>
@@ -423,10 +423,10 @@
 						<div class="slds-col" id="selModFilter_id">
 						</div>
 					</div>
-					<div class="slds-form-element" id="moduleLabelsRow">
+					<div class="slds-form-element slds-p-around_xx-small" id="moduleLabelsRow">
 						<label class="slds-form-element__label" for="moduleLabelsRow" id="aggr"> {$MOD.LBL_HOME_AGGREGATE} </label>
 						<div class="slds-form-element__control">
-							<select class="slds-select" id="selModAggregate_id" multiple="">
+							<select class="slds-select slds-page-header__meta-text" id="selModAggregate_id" multiple="">
 								<option value="sum">{'SUM'|getTranslatedString:'Reports'}</option>
 								<option value="avg">{'AVG'|getTranslatedString:'Reports'}</option>
 								<option value="max">{'MAX'|getTranslatedString:'Reports'}</option>
@@ -435,7 +435,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="slds-form-element" id="moduleCombosRow">
+					<div class="slds-form-element slds-p-around_xx-small" id="moduleCombosRow">
 						<label class="slds-form-element__label" for="moduleCombosRow" id="fields">
 							{$MOD.LBL_HOME_AG_FIELDS} </label>
 						<div class="slds-form-element__control" id="selModPrime_id">
@@ -505,18 +505,44 @@
 					<td class="dvtCellLabel" align="right" id="fields" width="110">{$MOD.LBL_HOME_AG_FIELDS}</td>
 					<td id="selModPrime_id" width="300" colspan="2" class="dvtCellInfo"></td>
 				</tr>*}
-				<tr id="rssRow" style="display:none">
+				<div class="slds-form-element slds-p-around_xx-small" id="rssRow" style="display:none">
+					<label class="slds-form-element__label" for="text-input-id-1">
+						<abbr class="slds-required" title="required">* </abbr>{$MOD.LBL_HOME_RSSURL}</label>
+						<div class="slds-form-element__control">
+							<input type="text" id="txtRss_id" placeholder="Placeholder text…" required="" class="slds-input" />
+						</div>
+				</div>
+				<div class="slds-form-element slds-p-around_xx-small" id="dashNameRow" style="display:none">
+					<label class="slds-form-element__label" for="text-input-id-1">
+						<abbr class="slds-required" title="required">* </abbr>{$MOD.LBL_HOME_DASHBOARD_NAME}</label>
+						<div class="slds-form-element__control" id="selDashName">
+						</div>
+				</div>
+				<div class="slds-form-element slds-p-around_xx-small" id="homewidget" style="display:none">
+					<div class="slds-form-element__control" id="home"></div>
+				</div>
+				{*<tr id="rssRow" style="display:none">
 					<td class="dvtCellLabel" width="110" align="right">{$MOD.LBL_HOME_RSSURL}<font color='red'>*</font></td>
 					<td width="300" colspan="2" class="dvtCellInfo"><input type="text" name="txtRss" id="txtRss_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:58%"></td>
-				</tr>
-				<tr id="dashNameRow" style="display:none">
+				</tr>*}
+				{*<tr id="dashNameRow" style="display:none">
 					<td class="dvtCellLabel" width="110" align="right">{$MOD.LBL_HOME_DASHBOARD_NAME}</td>
 					<td id="selDashName" class="dvtCellInfo" colspan="2" width="300"></td>
-				</tr>
-				<tr id="homewidget" style="display:none">
+				</tr>*}
+				{*<tr id="homewidget" style="display:none">
 					<td id="home" class="dvtCellInfo" colspan="2" width="300"></td>
-				</tr>
-				<tr id="dashTypeRow" style="display:none">
+				</tr>*}
+				<div class="slds-form-element slds-p-around_xx-small" id="dashTypeRow" style="display:none">
+					<label class="slds-form-element__label" for="maxentryid" id="fixed-text-label">{$MOD.LBL_HOME_DASHBOARD_TYPE}</label>
+						<div class="slds-form-element__control" id="selDashType">
+							<select name="seldashtype" id="seldashtype_id" class="slds-select slds-page-header__meta-text">
+								<option value="horizontalbarchart">{$MOD.LBL_HOME_HORIZONTAL_BARCHART}</option>
+								<option value="verticalbarchart">{$MOD.LBL_HOME_VERTICAL_BARCHART}</option>
+								<option value="piechart">{$MOD.LBL_HOME_PIE_CHART}</option>
+							</select>
+						</div>
+				</div>
+				{*<tr id="dashTypeRow" style="display:none">
 					<td class="dvtCellLabel" align="right" width="110">{$MOD.LBL_HOME_DASHBOARD_TYPE}</td>
 					<td id="selDashType" class="dvtCellInfo" width="300" colspan="2">
 						<select name="seldashtype" id="seldashtype_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
@@ -525,7 +551,7 @@
 							<option value="piechart">{$MOD.LBL_HOME_PIE_CHART}</option>
 						</select>
 					</td>
-				</tr>
+				</tr>*}
 				<tr id="reportNameRow" style="display:none">
 					<td class="dvtCellLabel" width="110" align="right">{'LBL_HOME_REPORT_NAME'|@getTranslatedString:$MODULE}</td>
 					<td id="selReportName" class="dvtCellInfo" colspan="2" width="300"></td>
@@ -533,7 +559,7 @@
 				<tr id="reportTypeRow" style="display:none">
 					<td class="dvtCellLabel" align="right" width="110">{'LBL_HOME_REPORT_TYPE'|@getTranslatedString:$MODULE}</td>
 					<td id="selReportType" class="dvtCellInfo" width="300" colspan="2">
-						<select name="selreporttype" id="selreportcharttype_id" class="detailedViewTextBox" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
+						<select name="selreporttype" id="selreportcharttype_id" class="detailedViewTextBox slds-select slds-page-header__meta-text" onfocus="this.className='detailedViewTextBoxOn'" onblur="this.className='detailedViewTextBox'" style="width:60%">
 							<option value="horizontalbarchart">{$MOD.LBL_HOME_HORIZONTAL_BARCHART}</option>
 							<option value="verticalbarchart">{$MOD.LBL_HOME_VERTICAL_BARCHART}</option>
 							<option value="piechart">{$MOD.LBL_HOME_PIE_CHART}</option>

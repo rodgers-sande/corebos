@@ -206,7 +206,7 @@ div#addWidgetDropDown {
 	display: flex;
 	flex-flow: wrap;
 	width: 100%;
-	justify-content: space-around;
+	justify-content: flex-start;
 }
 
 .dash-item-bg-light {

@@ -132,7 +132,7 @@
 				&nbsp;
 			</td>
 			{foreach item=header from=$HOME_STUFF.Header}
-			<th aria-label="{$header}" aria-sort="none" class="slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
+			<th aria-label="{$header}" aria-sort="none" class="slds-page-header__meta-text slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
 				<a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="-1">
 					<div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
 					<span class="slds-truncate" title="{$header}">{$header}</span>
@@ -151,13 +151,13 @@
 	{if $HOME_STUFF.Entries|@count > 0}
 		{foreach item=row key=crmid from=$HOME_STUFF.Entries}
  	<tr aria-level="1" aria-posinset="1" aria-selected="false" aria-setsize="4" class="slds-hint-parent" tabindex="0">
-		<td class="slds-text-align_left slds-truncate" role="gridcell">
+		<td class="slds-text-align_left slds-page-header__meta-text slds-truncate" role="gridcell">
 			<a href="index.php?module={$HOME_STUFF.ModuleName}&action=DetailView&record={$crmid}">
 				<img src="{'bookMark.gif'|@vtiger_imageurl:$THEME}" align="absmiddle" border="0" alt="{$APP.LBL_MORE} {$APP.LBL_INFORMATION}" title="{$APP.LBL_MORE} {$APP.LBL_INFORMATION}"/>
 			</a>
 		</td>
 			{foreach item=element from=$row}
-		<td class="slds-text-align_left" role="gridcell">
+		<td class="slds-text-align_left slds-page-header__meta-text" role="gridcell">
 			{$element}
 		</td>
 			{/foreach}
@@ -180,7 +180,7 @@
 				&nbsp;
 			</td>
 			{foreach item=header from=$HOME_STUFF.Header}
-			<th aria-label="{$header}" aria-sort="none" class="slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
+			<th aria-label="{$header}" aria-sort="none" class="slds-page-header__meta-text slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
 				<a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="-1">
 					<div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
 					<span class="slds-truncate" title="{$header}">{$header}</span>
@@ -221,7 +221,7 @@
 				&nbsp;
 			</td>
 			{foreach item=header from=$HOME_STUFF.Details.Header}
-			<th aria-label="{$header}" aria-sort="none" class="slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
+			<th aria-label="{$header}" aria-sort="none" class="slds-page-header__meta-text slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
 				<a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="-1">
 					<div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
 					<span class="slds-truncate" title="{$header}">{$header}</span>
@@ -238,7 +238,7 @@
 	</thead>
 		{foreach item=row key=crmid from=$HOME_STUFF.Details.Entries}
 			<tr>
-				<td class="slds-text-align_left slds-truncate" role="gridcell">
+				<td class="slds-text-align_left slds-page-header__meta-text slds-truncate" role="gridcell">
 				{if isset($HOME_STUFF.Details.Title)}
 					{if $HOME_STUFF.Details.Title.1 eq "My Sites"}
 					<img src="{'bookMark.gif'|@vtiger_imageurl:$THEME}" align="absmiddle" border="0" alt="{$APP.LBL_MORE} {$APP.LBL_INFORMATION}" title="{$APP.LBL_MORE} {$APP.LBL_INFORMATION}"/>
@@ -252,7 +252,7 @@
 				{/if}
 				</td>
 				{foreach item=element from=$row}
-				<td class="slds-text-align_left slds-truncate" role="gridcell"> {$element}</td>
+				<td class="slds-text-align_left slds-page-header__meta-text slds-truncate" role="gridcell"> {$element}</td>
 				{/foreach}
 			</tr>
 		{/foreach}
@@ -266,7 +266,7 @@
 	<table cellspacing=0 cellpadding=2 width=100% class='slds-table slds-table_header-hidden slds-table_bordered slds-table_edit slds-tree slds-table_tree' aria-multiselectable=true role="treegrid">
 		{foreach item="details" from=$HOME_STUFF.Entries.Details}
 			<tr>
-				<td class="slds-text-align_left slds-truncate" role="gridcell">
+				<td class="slds-text-align_left slds-page-header__meta-text slds-truncate" role="gridcell">
 					<a href="{$details.1}" target="_blank">
 						{$details.0|truncate:50}...
 					</a>
@@ -279,7 +279,7 @@
 	<input type=hidden id=more_{$HOME_STUFFID} value="{$DASHDETAILS[$HOME_STUFFID].DashType}"/>
 	<table cellspacing=0 cellpadding=5 width=100% class='slds-table slds-table_header-hidden slds-table_bordered slds-table_edit slds-tree slds-table_tree' aria-multiselectable=true role="treegrid">
 		<tr>
-			<td class="slds-text-align_left slds-truncate" role="gridcell">{$HOME_STUFF}</td>
+			<td class="slds-text-align_left slds-page-header__meta-text slds-truncate" role="gridcell">{$HOME_STUFF}</td>
 		</tr>
 	</table>
 {elseif $HOME_STUFFTYPE eq 'ReportCharts' && isset($HOME_STUFF.error)}
@@ -288,7 +288,7 @@
 	<input type=hidden id=more_{$HOME_STUFFID} value="{$DASHDETAILS[$HOME_STUFFID].ReportId}"/>
 	<table cellspacing=0 cellpadding=5 width=100%>
 		<tr>
-			<td class="slds-text-align_left slds-truncate" role="gridcell">
+			<td class="slds-text-align_left slds-page-header__meta-text slds-truncate" role="gridcell">
 			<canvas id="homechart{$HOME_STUFFID}" style="width:500px;height:250px;margin:auto;padding:10px;"></canvas>
 <script type="text/javascript">
 window.doChart{$HOME_STUFFID} = function(charttype) {ldelim}

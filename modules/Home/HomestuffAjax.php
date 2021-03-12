@@ -35,8 +35,7 @@ if (!empty($modval)) {
 		echo $mod_strings['MSG_NO_FILTERS'];
 		die;
 	} else {
-		$html = '<select id=selFilterid name=selFiltername onchange=setPrimaryFld(this) class="detailedViewTextBox" onfocus="this.className=\'detailedViewTextBoxOn\'" ';
-		$html.= ' onblur="this.className=\'detailedViewTextBox\'" style="width:60%">';
+		$html = '<select id=selFilterid name=selFiltername onchange=setPrimaryFld(this) class="slds-select slds-page-header__meta-text">';
 		for ($i=0; $i<$adb->num_rows($result); $i++) {
 			if ($adb->query_result($result, $i, "viewname")=='All') {
 				$html .= "<option value='".$adb->query_result($result, $i, 'cvid')."'>".getTranslatedString('COMBO_ALL', $currentModule)."</option>";
@@ -107,8 +106,8 @@ if (!empty($_REQUEST['primecvid'])) {
 		echo $mod_strings['MSG_NO_FIELDS'];
 		die;
 	} else {
-		$html = '<select id=selPrimeFldid name=PrimeFld multiple class="detailedViewTextBox" onfocus="this.className=\'detailedViewTextBoxOn\'"';
-		$html.= ' onblur="this.className=\'detailedViewTextBox\'" style="width:60%">';
+		$html = '<select multiple  id=selPrimeFldid name=PrimeFld multiple class="slds-page-header__meta-text slds-select">';
+		//$html.= ' onblur="this.className=\'detailedViewTextBox\'" style="width:60%">';
 		for ($i=0; $i<$adb->num_rows($result); $i++) {
 			$columnname=$adb->query_result($result, $i, "columnname");
 			if ($columnname != '') {

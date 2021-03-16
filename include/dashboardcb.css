@@ -1,3 +1,19 @@
+#dialogoverlay{
+	display: none;
+	opacity: .6;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #000;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+}
+#dialogbox{
+	display: none;
+	position: fixed;
+}
+
 /* Colors */
 :root {
 	--x-main-bg: #f3f2f2;

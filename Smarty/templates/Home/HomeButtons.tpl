@@ -357,6 +357,7 @@
 			</a>
 		</li>
 		-->*}
+		</ul>
 	</div>
 
 	{*<!-- the following div is used to display the contents for the add widget window -->*}
@@ -646,3 +647,21 @@
 {*<!-- change layout modal end -->*}
 <div class="slds-backdrop slds-backdrop_open overlay" style="display: none"></div>
 
+{*Custom Alert Modal*}
+<div id="dialogoverlay"></div>
+<div id="dialogbox" class="slds-modal slds-fade-in-open">
+	<div class="slds-modal__container">
+		<header id="dialogboxhead" class="slds-modal__header slds-modal__header_empty">
+			<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+			<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+				<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+			</svg>
+			<span class="slds-assistive-text">Close</span>
+			</button>
+		</header>
+		<div class="slds-modal__content slds-p-around_medium">
+			<h3 class="slds-modal__title slds-hyphenate slds-text-align_center" id="dialogboxbody"></h3>
+		</div>
+		<footer id="dialogboxfooter" class="slds-modal__footer"></footer>
+	</div>
+</div>

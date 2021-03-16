@@ -11,7 +11,7 @@
  * this function is used to show hide the columns in the add widget div based on the option selected
  * @param string typeName - the selected option
  */
-function chooseType(typeName) {
+ function chooseType(typeName) {
 	VtigerJS_DialogBox.showbusy();
 	document.getElementById('stufftype_id').value=typeName;
 
@@ -291,8 +291,8 @@ function saveEditDash(dashRowId) {
  * this function is used to delete widgets form the home page
  * @param string sid - the stuffid of the widget
  */
-function DelStuff(sid) {
-if (delStuffModal ()) {
+ function DelStuff(sid) {
+	if (Alert.render(`${alert_arr.SURE_TO_DELETE}`)) {
 		jQuery.ajax({
 			method: 'POST',
 			url: 'index.php?module=Home&action=HomeAjax&file=HomestuffAjax&homestuffid='+sid,
@@ -314,31 +314,22 @@ if (delStuffModal ()) {
 	}
 }
 
-function delStuffModal () {
-	let modalItem = document.createElement('div');
-	modalItem.id = 'delStuffModal_1';
-	modalItem.className = 'slds-modal slds-fade-in-open';
-	modalItem.innerHTML = `
-	<div class="slds-modal__container">
-	<header class="slds-modal__header slds-modal__header_empty">
-		<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
-		<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
-			<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-		</svg>
-		<span class="slds-assistive-text">Close</span>
-		</button>
-	</header>
-	<div class="slds-modal__content slds-p-around_medium">
-		<h3 class="slds-modal__title slds-hyphenate slds-text-align_center"> ${alert_arr.SURE_TO_DELETE} </h3>
-	</div>
-	<footer class="slds-modal__footer">
-		<button class="slds-button slds-button_neutral" id="delStuffCancel">Cancel</button>
-		<button class="slds-button slds-button_brand" id="delStuffComplete">Ok</button>
-	</footer>
-	</div>`;
-	document.body.appendChild(modalItem);
-	openOverlay();
+function ModalAlert(){
+	this.render = function(dialog){
+		var dialogoverlay = document.getElementById('dialogoverlay');
+		var dialogbox = document.getElementById('dialogbox');
+		dialogoverlay.style.display = "block";
+		dialogbox.style.display = "block";
+		document.getElementById('dialogboxbody').innerHTML = dialog;
+		document.getElementById('dialogboxfooter').innerHTML = '<button class="slds-button slds-button_brand" id="delStuffComplete" onclick="Alert.ok()">Ok</>';
+	}
+	this.ok = function(){
+		document.getElementById('dialogbox').style.display = "none";
+		document.getElementById('dialogoverlay').style.display = "none";
+	}
 }
+
+var Alert = new ModalAlert();
 
 /**
  * this function loads the newly added div to the home page
